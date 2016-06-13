@@ -1,0 +1,1 @@
+{"version":3,"file":"BaseFirstUI.js","sourceRoot":"","sources":["../../../../src/core/view/main/BaseFirstUI.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AACH;IAA0B,+BAAa;IACtC;QACI,iBAAO,CAAC;QAER,IAAI,CAAC,aAAa,GAAG,IAAI,CAAC,KAAK,GAAC,CAAC,CAAC;QAClC,IAAI,CAAC,aAAa,GAAG,IAAI,CAAC,MAAM,GAAC,CAAC,CAAC;IACvC,CAAC;;IACF,kBAAC;AAAD,CAAC,AAPD,CAA0B,GAAG,CAAC,SAAS,GAOtC;oBAPK,WAAW;AAOhB"}
