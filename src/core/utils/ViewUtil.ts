@@ -21,4 +21,20 @@ class ViewUtil {
         shp.graphics.endFill();
         return shp;
 	}
+	
+	public static getArtNum(art_src:string,src:string):egret.Sprite
+	{
+        var con: egret.Sprite = new egret.Sprite();
+	    var i:number = 0;
+	    while(i < src.length)
+        {
+             var texture:egret.Texture = RES.getRes(art_src + src.charAt(i));
+             var bmp:egret.Bitmap = new egret.Bitmap(texture);
+             bmp.x = con.width + 1;
+             bmp.y = -texture.textureHeight/2;
+             con.addChild(bmp);
+        }
+	    
+	    return con;
+	}
 }

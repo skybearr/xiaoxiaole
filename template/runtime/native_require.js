@@ -38,6 +38,7 @@ var game_file_list = [
 	"bin-debug/core/view/story/ChapterUI.js",
 	"bin-debug/core/view/story/MenuUI.js",
 	"bin-debug/core/view/story/MissionBtn.js",
+	"bin-debug/core/view/story/MissionItem.js",
 	"bin-debug/core/view/story/MissionUI.js",
 	"bin-debug/core/view/story/StoryLogic.js",
 	"bin-debug/core/view/story/StoryUI.js",

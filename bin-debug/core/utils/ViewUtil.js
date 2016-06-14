@@ -22,6 +22,18 @@ var ViewUtil = (function () {
         shp.graphics.endFill();
         return shp;
     };
+    ViewUtil.getArtNum = function (art_src, src) {
+        var con = new egret.Sprite();
+        var i = 0;
+        while (i < src.length) {
+            var texture = RES.getRes(art_src + src.charAt(i));
+            var bmp = new egret.Bitmap(texture);
+            bmp.x = con.width + 1;
+            bmp.y = -texture.textureHeight / 2;
+            con.addChild(bmp);
+        }
+        return con;
+    };
     return ViewUtil;
 }());
 egret.registerClass(ViewUtil,'ViewUtil');

@@ -10,6 +10,6 @@ var BasePopUI = (function (_super) {
     }
     var d = __define,c=BasePopUI,p=c.prototype;
     return BasePopUI;
-}(eui.Group));
+}(eui.Component));
 egret.registerClass(BasePopUI,'BasePopUI');
 //# sourceMappingURL=BasePopUI.js.map

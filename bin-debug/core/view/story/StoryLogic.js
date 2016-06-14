@@ -32,6 +32,11 @@ var StoryLogic = (function (_super) {
     StoryLogic.MISSION_STATE_LOCK = 0;
     StoryLogic.MISSION_STATE_WANTED = 1;
     StoryLogic.MISSION_STATE_FINISH = 2;
+    StoryLogic.MISSION_ITEM_STATE_LOCK = 0;
+    StoryLogic.MISSION_ITEM_STATE_WANTED = 1;
+    StoryLogic.MISSION_ITEM_STATE_FINISH = 2;
+    /**没一个大关卡中小关卡的数量*/
+    StoryLogic.MISSION_LIST_NUM = 15;
     return StoryLogic;
 }(egret.EventDispatcher));
 egret.registerClass(StoryLogic,'StoryLogic');

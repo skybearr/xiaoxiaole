@@ -9,7 +9,7 @@ class MissionBtn extends eui.Group{
     private lock_bmp:egret.Bitmap;
     
     private tw:egret.Tween;
-    private mission_id: number;
+    private mission_id: number;//关卡索引  0，1，2
     private btn_width: number;
     /**状态 0锁定 1开启 2通关*/
     private state:number;
@@ -66,8 +66,6 @@ class MissionBtn extends eui.Group{
             this.lock_bmp.visible = false;
             this.tween_circle.visible = false;
             this.bg_circle.alpha = 0;
-//            this.bg_circle.scaleX = this.bg_circle.scaleY = (this.btn_width + 30) / this.bg_circle.width;
-//            this.tween_circle.scaleX = this.tween_circle.scaleY = (this.btn_width + 0) / this.tween_circle.width;
         }
         
         this.once(egret.Event.REMOVED_FROM_STAGE,this.clear,this);
@@ -76,7 +74,12 @@ class MissionBtn extends eui.Group{
 	
 	private clickMission(e:egret.TouchEvent):void
 	{
-	    UIManager.getInstance().openPopUI();
+        if(this.state != StoryLogic.MISSION_STATE_LOCK)
+        {
+            var event: MyUIEvent = new MyUIEvent(MyUIEvent.OPEN_MISSION_LIST);
+            event.data = this.mission_id;
+            StoryLogic.getInstance().dispatchEvent(event);
+        }
 	}
 	
 	private clear():void

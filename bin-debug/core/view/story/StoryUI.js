@@ -76,9 +76,15 @@ var StoryUI = (function (_super) {
     };
     p.initEvent = function () {
         this.menu_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickMenu, this);
+        StoryLogic.getInstance().addEventListener(MyUIEvent.OPEN_MISSION_LIST, this.openMission, this);
         StoryLogic.getInstance().addEventListener(MyUIEvent.CHANGE_CHAPTER, this.changeChapter, this);
+        StoryLogic.getInstance().addEventListener(MyUIEvent.CLOSE_MENU, this.closeMenu, this);
         LoadManager.getInstance().addEventListener(MyUIEvent.LOAD_STORY_CHAPTER, this.initChapter, this);
         this.once(egret.Event.REMOVED_FROM_STAGE, this.clear, this);
+    };
+    p.openMission = function (e) {
+        var ui = new MissionUI(this.chapter_id, e.data);
+        this.addChild(ui);
     };
     p.changeChapter = function (e) {
         this.new_chapter_id = e.data.id;
@@ -98,6 +104,18 @@ var StoryUI = (function (_super) {
             this.menu = new MenuUI();
         }
         this.addChild(this.menu);
+        this.menu.x = -GlobalData.GameStage_width / 2;
+        var tw = egret.Tween.get(this.menu);
+        tw.to({ x: 0 }, 300);
+    };
+    p.closeMenu = function () {
+        this.menu = null;
+        this.is_tween = true;
+        var tw = egret.Tween.get(this.menu_btn);
+        tw.to({ x: GlobalData.GameStage_width / 2 }, 300).call(this.menuBtnAppear, this);
+    };
+    p.menuBtnAppear = function () {
+        this.is_tween = false;
     };
     p.clear = function () {
         this.menu_btn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.clickMenu, this);

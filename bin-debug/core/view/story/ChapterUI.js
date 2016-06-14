@@ -15,7 +15,7 @@ var ChapterUI = (function (_super) {
         this.mission_data = StoryLogic.getInstance().chapter_data[this.chapter_id - 1];
         this.mission_num = this.mission_data.length / 3 - 1;
         this.current_mission = this.chapter_id == StoryLogic.getInstance().current_chapterID ?
-            Math.ceil(StoryLogic.getInstance().current_missionID / 15) - 1 : 999999; //如果是以前的章节，全部已通关
+            Math.ceil(StoryLogic.getInstance().current_missionID / StoryLogic.MISSION_LIST_NUM) - 1 : 999; //如果是以前的章节，全部已通关
         this.mission_btn_arr = [];
         var img = RES.getRes("story_" + this.chapter_id + "_jpg");
         this.addChild(new egret.Bitmap(img));

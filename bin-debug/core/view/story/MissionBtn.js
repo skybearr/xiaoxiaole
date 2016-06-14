@@ -54,7 +54,11 @@ var MissionBtn = (function (_super) {
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickMission, this);
     };
     p.clickMission = function (e) {
-        UIManager.getInstance().openPopUI();
+        if (this.state != StoryLogic.MISSION_STATE_LOCK) {
+            var event = new MyUIEvent(MyUIEvent.OPEN_MISSION_LIST);
+            event.data = this.mission_id;
+            StoryLogic.getInstance().dispatchEvent(event);
+        }
     };
     p.clear = function () {
         this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.clickMission, this);

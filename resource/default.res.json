@@ -9,7 +9,7 @@
 			"name":"loading"
 		},
 		{
-			"keys":"loadbg_jpg,startgame_png,bbg_png,bdbtn_png,beattack_png,btnbg_png,buybtn_png,caidan_png,cancel_btn_png,combo_png,def_png,defblood_png,defbloodbg_png,di_png,djinfobg_png,djtit_png,exp_png,expbar_png,expbg_png,fanhui_png,fight_png,fightbg0_jpg,fightbg1_jpg,fightbg2_jpg,fightbgb_jpg,finger_png,fing_Arrow_png,forgetpsd_png,getbtn_png,getsuc_png,giveupbtn_png,goback_png,gobackbtn_png,goback_arrow_png,goback_btn_png,gold_png,goout_png,guan_png,infobg_png,inputbg_png,jbbg_png,jyjlbg_png,lb_bg_png,lb_tit_png,lb_txt_png,loading_png,logbtn_png,logtit_png,losimg_png,lostit_png,menu_png,menubtn_png,menubtnbg_png,munebg_png,npcimg_png,offlogbtn_png,ok_btn_png,other_jpg,pause_png,paustit_png,paywanba_png,playinfobg_png,playlv_png,propts_png,qued_btn_png,quicklog_png,regbtn_png,reglogbg_png,regtit_png,reward_png,rush_btn_png,set_png,setbg_png,share_png,shop_btn_png,skill_png,startnew_png,start_btn_png,star_a_png,star_b_png,sucbg_png,tab_dazhe_png,updatebtn_png,wall_png,wallbv_png,wallbvbg_png,walltit_png,wallts_png,winimg_png,wintit_png,wnum_png,xzts_jpg,ydbox_png,ynum_png,main_json",
+			"keys":"loadbg_jpg,startgame_png,bbg_png,bdbtn_png,btnbg_png,buybtn_png,caidan_png,cancel_btn_png,combo_png,defblood_png,defbloodbg_png,di_png,djinfobg_png,djtit_png,exp_png,expbar_png,expbg_png,fanhui_png,fightbg0_jpg,fightbg1_jpg,fightbg2_jpg,fightbgb_jpg,finger_png,fing_Arrow_png,forgetpsd_png,getbtn_png,getsuc_png,giveupbtn_png,goback_png,gobackbtn_png,goback_arrow_png,goback_btn_png,gold_png,goout_png,guan_png,infobg_png,inputbg_png,jbbg_png,jyjlbg_png,lb_bg_png,lb_tit_png,lb_txt_png,loading_png,logbtn_png,logtit_png,losimg_png,lostit_png,menubtn_png,menubtnbg_png,munebg_png,npcimg_png,offlogbtn_png,ok_btn_png,other_jpg,pause_png,paustit_png,paywanba_png,playinfobg_png,playlv_png,propts_png,qued_btn_png,quicklog_png,regbtn_png,reglogbg_png,regtit_png,reward_png,rush_btn_png,setbg_png,share_png,shop_btn_png,startnew_png,start_btn_png,star_a_png,star_b_png,sucbg_png,tab_dazhe_png,updatebtn_png,wallbv_png,wallbvbg_png,walltit_png,wallts_png,winimg_png,wintit_png,xzts_jpg,ydbox_png,main_json",
 			"name":"game"
 		}
 	],
@@ -55,11 +55,6 @@
 			"url":"assets/game/bdbtn.png"
 		},
 		{
-			"name":"beattack_png",
-			"type":"image",
-			"url":"assets/game/beattack.png"
-		},
-		{
 			"name":"btnbg_png",
 			"type":"image",
 			"url":"assets/game/btnbg.png"
@@ -83,11 +78,6 @@
 			"name":"combo_png",
 			"type":"image",
 			"url":"assets/game/combo.png"
-		},
-		{
-			"name":"def_png",
-			"type":"image",
-			"url":"assets/game/def.png"
 		},
 		{
 			"name":"defblood_png",
@@ -133,11 +123,6 @@
 			"name":"fanhui_png",
 			"type":"image",
 			"url":"assets/game/fanhui.png"
-		},
-		{
-			"name":"fight_png",
-			"type":"image",
-			"url":"assets/game/fight.png"
 		},
 		{
 			"name":"fightbg0_jpg",
@@ -285,11 +270,6 @@
 			"url":"assets/game/lostit.png"
 		},
 		{
-			"name":"menu_png",
-			"type":"image",
-			"url":"assets/game/menu.png"
-		},
-		{
 			"name":"menubtn_png",
 			"type":"image",
 			"url":"assets/game/menubtn.png"
@@ -390,11 +370,6 @@
 			"url":"assets/game/rush_btn.png"
 		},
 		{
-			"name":"set_png",
-			"type":"image",
-			"url":"assets/game/set.png"
-		},
-		{
 			"name":"setbg_png",
 			"type":"image",
 			"url":"assets/game/setbg.png"
@@ -408,11 +383,6 @@
 			"name":"shop_btn_png",
 			"type":"image",
 			"url":"assets/game/shop_btn.png"
-		},
-		{
-			"name":"skill_png",
-			"type":"image",
-			"url":"assets/game/skill.png"
 		},
 		{
 			"name":"startnew_png",
@@ -450,11 +420,6 @@
 			"url":"assets/game/updatebtn.png"
 		},
 		{
-			"name":"wall_png",
-			"type":"image",
-			"url":"assets/game/wall.png"
-		},
-		{
 			"name":"wallbv_png",
 			"type":"image",
 			"url":"assets/game/wallbv.png"
@@ -485,11 +450,6 @@
 			"url":"assets/game/wintit.png"
 		},
 		{
-			"name":"wnum_png",
-			"type":"image",
-			"url":"assets/game/wnum.png"
-		},
-		{
 			"name":"xzts_jpg",
 			"type":"image",
 			"url":"assets/game/xzts.jpg"
@@ -498,11 +458,6 @@
 			"name":"ydbox_png",
 			"type":"image",
 			"url":"assets/game/ydbox.png"
-		},
-		{
-			"name":"ynum_png",
-			"type":"image",
-			"url":"assets/game/ynum.png"
 		},
 		{
 			"name":"logo_png",
@@ -534,6 +489,60 @@
 			"name":"story_4_jpg",
 			"type":"image",
 			"url":"assets/story/story_4.jpg"
+		},
+		{
+			"name":"wnum_json",
+			"subkeys":"wnum_0,wnum_1,wnum_2,wnum_3,wnum_4,wnum_5,wnum_6,wnum_7,wnum_8,wnum_9,wnum_x",
+			"type":"sheet",
+			"url":"assets/json/wnum.json"
+		},
+		{
+			"name":"beattack_json",
+			"subkeys":"beattack_0_0,beattack_0_1,beattack_0_2,beattack_1_0,beattack_1_1,beattack_1_2,beattack_2_0,beattack_2_1,beattack_2_2,beattack_3_0,beattack_3_1,beattack_3_2,beattack_4_0,beattack_4_1,beattack_4_2,beattack_5_0,beattack_5_1,beattack_5_2,beattack_frozen,beattack_skull0,beattack_skull1,beattack_skull2,defattack_attack_0_0,defattack_attack_0_1,defattack_attack_1_0,defattack_attack_1_1,defattack_attack_2_0,defattack_attack_2_1,defattack_attack_3_0,defattack_attack_3_1,defattack_attack_4_0,defattack_attack_4_1",
+			"type":"sheet",
+			"url":"assets/json/beattack.json"
+		},
+		{
+			"name":"def_json",
+			"subkeys":"def_wait0_0,def_wait0_1,def_wait1_0,def_wait1_1,def_wait2_0,def_wait2_1,def_wait3_0,def_wait3_1,def_wait4_0,def_wait4_1,def_wait5_0,def_wait5_1,def_walk0_0,def_walk0_1,def_walk0_2,def_walk0_3,def_walk1_0,def_walk1_1,def_walk1_2,def_walk1_3,def_walk2_0,def_walk2_1,def_walk2_2,def_walk2_3,def_walk3_0,def_walk3_1,def_walk3_2,def_walk3_3,def_walk4_0,def_walk4_1,def_walk4_2,def_walk4_3,def_walk5_0,def_walk5_1,def_walk5_2,def_walk5_3",
+			"type":"sheet",
+			"url":"assets/json/def.json"
+		},
+		{
+			"name":"fight_json",
+			"subkeys":"dis_dis_0_0,dis_dis_0_1,dis_dis_0_2,dis_dis_1_0,dis_dis_1_1,dis_dis_1_2,dis_dis_2_0,dis_dis_2_1,dis_dis_2_2,dis_dis_3_0,dis_dis_3_1,dis_dis_3_2,dis_dis_4_0,dis_dis_4_1,dis_dis_4_2,dis_dis_5_0,dis_dis_5_1,dis_dis_5_2,fight_0,fight_1,fight_2,fight_3,fight_4,fight_5,fight_we_solder0_0,fight_we_solder0_1,fight_we_solder0_2,fight_we_solder0_3,fight_we_solder1_0,fight_we_solder1_1,fight_we_solder1_2,fight_we_solder1_3,fight_we_solder2_0,fight_we_solder2_1,fight_we_solder2_2,fight_we_solder2_3,fight_we_solder3_0,fight_we_solder3_1,fight_we_solder3_2,fight_we_solder3_3,fight_we_solder4_0,fight_we_solder4_1,fight_we_solder4_2,fight_we_solder4_3,fight_we_solder5_0,fight_we_solder5_1,fight_we_solder5_2,fight_we_solder5_3,fly_fly_0_0,fly_fly_0_1,fly_fly_1_0,fly_fly_1_1,fly_fly_2_0,fly_fly_2_1,fly_fly_3_0,fly_fly_3_1,fly_fly_4_0,fly_fly_4_1,fly_fly_5_0,fly_fly_5_1",
+			"type":"sheet",
+			"url":"assets/json/fight.json"
+		},
+		{
+			"name":"menu_json",
+			"subkeys":"menu_attacttxt,menu_dj_img0,menu_dj_img1,menu_dj_img2,menu_dj_img3,menu_help_btn,menu_levimg,menu_propfram,menu_selectbg,menu_set_btn,menu_shopbtnbg,menu_wall1_1,menu_wall2_1,menu_wall3_1,menu_wall4_1,menu_wall5_1,menu_warn,menu_we_solder0,menu_we_solder1,menu_we_solder2,menu_we_solder3,menu_we_solder4,menu_we_solder5,shop_price,shop_propbg,shop_shopimg,shop_shopimgbg,shop_yuan",
+			"type":"sheet",
+			"url":"assets/json/menu.json"
+		},
+		{
+			"name":"set_json",
+			"subkeys":"set_anntit,set_close,set_gobackbtn,set_load,set_loadbg,set_music_open_btn,set_regbtn,set_rewardsmallbg,set_rewardtit,set_setimg,set_settit,set_sound_open_btn,set_tstit,set_txt,set_tzifimg,set_yqdimg",
+			"type":"sheet",
+			"url":"assets/json/set.json"
+		},
+		{
+			"name":"skill_json",
+			"subkeys":"other_bom0,other_bom1,other_bom2,other_djbg0,other_djbg1,other_update0,other_update1,other_win0,other_win1,skill_skill_lxmm0,skill_skill_lxmm1,skill_skill_lxmm2,skill_skill_lxmm3",
+			"type":"sheet",
+			"url":"assets/json/skill.json"
+		},
+		{
+			"name":"wall_json",
+			"subkeys":"wall_dj_hd0,wall_dj_hd1,wall_dj_hd2,wall_wall1_1,wall_wall1_2,wall_wall1_3,wall_wall1_4,wall_wall2_1,wall_wall2_2,wall_wall2_3,wall_wall2_4,wall_wall3_1,wall_wall3_2,wall_wall3_3,wall_wall3_4,wall_wall4_1,wall_wall4_2,wall_wall4_3,wall_wall4_4,wall_wall5_1,wall_wall5_2,wall_wall5_3,wall_wall5_4",
+			"type":"sheet",
+			"url":"assets/json/wall.json"
+		},
+		{
+			"name":"ynum_json",
+			"subkeys":"ynum_0,ynum_1,ynum_2,ynum_3,ynum_4,ynum_5,ynum_6,ynum_7,ynum_8,ynum_9,ynum_x",
+			"type":"sheet",
+			"url":"assets/json/ynum.json"
 		}
 	]
 }

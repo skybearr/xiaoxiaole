@@ -3,7 +3,7 @@
  * @author 
  *
  */
-class BasePopUI extends eui.Group{
+class BasePopUI extends eui.Component{
 	public constructor() {
     	  super();
 	}

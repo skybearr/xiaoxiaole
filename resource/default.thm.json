@@ -5,7 +5,8 @@
     "resource/assets/skins/LoadingSkin.exml",
     "resource/assets/skins/LoginMainSkin.exml",
     "resource/assets/skins/LogoAnimationSkin.exml",
-    "resource/assets/skins/MainSceneSkin.exml"
+    "resource/assets/skins/MainMenuSkin.exml",
+    "resource/assets/skins/MissionListSkin.exml"
   ],
   "skins": {}
 }

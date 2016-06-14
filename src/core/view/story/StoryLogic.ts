@@ -20,6 +20,13 @@ class StoryLogic extends egret.EventDispatcher{
     public static MISSION_STATE_WANTED: number = 1;
     public static MISSION_STATE_FINISH: number = 2;
     
+    public static MISSION_ITEM_STATE_LOCK: number = 0;
+    public static MISSION_ITEM_STATE_WANTED: number = 1;
+    public static MISSION_ITEM_STATE_FINISH: number = 2;
+    
+    /**没一个大关卡中小关卡的数量*/
+    public static MISSION_LIST_NUM  :number = 15;
+    
     /**章节中的关卡数据 x,y,width,最后一个是更多游戏按钮的位置*/
     public chapter_data = [[493,352,220,   237,448,200,    451,613,220,    177,642,0],
                             [493,352,220,   237,448,200,    451,613,220,    177,642,0],

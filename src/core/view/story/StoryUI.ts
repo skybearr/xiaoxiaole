@@ -104,9 +104,17 @@ class StoryUI extends BaseFirstUI{
 	private initEvent():void
 	{
     	  this.menu_btn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.clickMenu,this);
-    	  StoryLogic.getInstance().addEventListener(MyUIEvent.CHANGE_CHAPTER,this.changeChapter,this);
+    	  StoryLogic.getInstance().addEventListener(MyUIEvent.OPEN_MISSION_LIST,this.openMission,this);
+        StoryLogic.getInstance().addEventListener(MyUIEvent.CHANGE_CHAPTER,this.changeChapter,this);
+        StoryLogic.getInstance().addEventListener(MyUIEvent.CLOSE_MENU,this.closeMenu,this);
     	  LoadManager.getInstance().addEventListener(MyUIEvent.LOAD_STORY_CHAPTER,this.initChapter,this);
         this.once(egret.Event.REMOVED_FROM_STAGE,this.clear,this);
+	}
+	
+	private openMission(e:MyUIEvent):void
+	{
+        var ui:MissionUI = new MissionUI(this.chapter_id,e.data);
+        this.addChild(ui);
 	}
 	
 	private changeChapter(e:MyUIEvent):void
@@ -135,11 +143,32 @@ class StoryUI extends BaseFirstUI{
             this.menu = new MenuUI(); 
         }
         this.addChild(this.menu);
+        this.menu.x = -GlobalData.GameStage_width/2;
+        var tw = egret.Tween.get(this.menu);
+        tw.to({x:0},300);
 	}
+	
+    private closeMenu():void
+	{
+    	  this.menu = null;
+        this.is_tween = true;
+        var tw = egret.Tween.get(this.menu_btn);
+        tw.to({ x: GlobalData.GameStage_width / 2 },300).call(this.menuBtnAppear,this);
+	}
+	
+    private menuBtnAppear(): void
+    {
+        this.is_tween = false;
+    }
 	
 	private clear():void
 	{
         this.menu_btn.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.clickMenu,this);
+        StoryLogic.getInstance().removeEventListener(MyUIEvent.OPEN_MISSION_LIST,this.openMission,this);
+        StoryLogic.getInstance().removeEventListener(MyUIEvent.CHANGE_CHAPTER,this.changeChapter,this);
+        StoryLogic.getInstance().removeEventListener(MyUIEvent.CLOSE_MENU,this.closeMenu,this);
+        LoadManager.getInstance().removeEventListener(MyUIEvent.LOAD_STORY_CHAPTER,this.initChapter,this);
+        egret.Tween.removeAllTweens();
         this.removeChildren();
         this.chapter_select = null;
         this.menu_btn.clear();
