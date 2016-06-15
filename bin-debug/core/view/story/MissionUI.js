@@ -12,7 +12,7 @@ var MissionUI = (function (_super) {
         _super.call(this);
         this.charter_id = chapterID;
         this.mission_index = index;
-        this.skinName = "MissionListSkin";
+        this.skinName = "resource/assets/skins/MissionListSkin.exml";
         this.once(egret.Event.ADDED_TO_STAGE, this.onStage, this);
     }
     var d = __define,c=MissionUI,p=c.prototype;
@@ -34,37 +34,54 @@ var MissionUI = (function (_super) {
         for (var i = 0; i < StoryLogic.MISSION_LIST_NUM; i++) {
             var n = this.mission_index * StoryLogic.MISSION_LIST_NUM + (i + 1);
             var star = i % 4;
-            var state = this.getState(i + 1); //关卡不是0开始 是1开始
-            if (state == StoryLogic.MISSION_ITEM_STATE_WANTED) {
-                this.current_mission_item = item;
-                this.addCurrentHand();
-            }
+            var state = this.getState(i);
             var item = new MissionItem(n, star, state);
             item.name = n.toString();
             item.x = (item.width_set + 60) * (i % 3);
             item.y = (item.height_set + 10) * Math.floor(i / 3);
+            if (state == StoryLogic.MISSION_ITEM_STATE_WANTED) {
+                this.current_mission_item = item;
+            }
             this.mission_list_con.addChild(item);
             this.mission_arr.push(item);
             item.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickItem, this);
         }
+        if (this.current_mission_item != null) {
+            this.addCurrentHand();
+        }
         this.initEvent();
     };
     p.addCurrentHand = function () {
+        var ww;
+        if (this.finger == null) {
+            var texture = RES.getRes("finger_png");
+            this.finger = new eui.Image(texture);
+            this.finger.anchorOffsetX = texture.textureWidth / 2;
+            this.finger.anchorOffsetY = texture.textureHeight / 2;
+            this.finger.scaleX = this.finger.scaleY = 0.7;
+            this.finger.smoothing = true;
+        }
+        this.finger.x = this.current_mission_item.x + this.current_mission_item.width_set + 100;
+        this.finger.y = this.current_mission_item.y + this.current_mission_item.height_set - 34 + this.mission_list_con.top;
+        this.addChild(this.finger);
+        var tw = egret.Tween.get(this.finger, { loop: true });
+        tw.to({ scaleX: 0.5, scaleY: 0.5 }, 500).to({ scaleX: 0.7, scaleY: 0.7 }, 500);
     };
+    /**获取小关卡的状态  i 小关卡的索引 0-14*/
     p.getState = function (i) {
         if (this.charter_id < StoryLogic.getInstance().current_chapterID) {
             return StoryLogic.MISSION_ITEM_STATE_FINISH;
         }
         else {
-            var index = Math.floor(this.newest_mission_id / StoryLogic.MISSION_LIST_NUM); //打过的大关卡
+            var index = Math.floor((this.newest_mission_id - 1) / StoryLogic.MISSION_LIST_NUM); //当前的大关卡
             if (this.mission_index < index) {
                 return StoryLogic.MISSION_ITEM_STATE_FINISH;
             }
             else if (this.mission_index == index) {
-                if (i < this.newest_mission_id % 15) {
+                if (i < (this.newest_mission_id - 1) % 15) {
                     return StoryLogic.MISSION_ITEM_STATE_FINISH;
                 }
-                else if (i == this.newest_mission_id % 15) {
+                else if (i == (this.newest_mission_id - 1) % 15) {
                     return StoryLogic.MISSION_ITEM_STATE_WANTED;
                 }
                 else {

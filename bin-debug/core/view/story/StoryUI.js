@@ -119,6 +119,11 @@ var StoryUI = (function (_super) {
     };
     p.clear = function () {
         this.menu_btn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.clickMenu, this);
+        StoryLogic.getInstance().removeEventListener(MyUIEvent.OPEN_MISSION_LIST, this.openMission, this);
+        StoryLogic.getInstance().removeEventListener(MyUIEvent.CHANGE_CHAPTER, this.changeChapter, this);
+        StoryLogic.getInstance().removeEventListener(MyUIEvent.CLOSE_MENU, this.closeMenu, this);
+        LoadManager.getInstance().removeEventListener(MyUIEvent.LOAD_STORY_CHAPTER, this.initChapter, this);
+        egret.Tween.removeAllTweens();
         this.removeChildren();
         this.chapter_select = null;
         this.menu_btn.clear();

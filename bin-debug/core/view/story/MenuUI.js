@@ -23,6 +23,8 @@ var MenuUI = (function (_super) {
         this.back_btn.startTween();
         this.back_btn.once(egret.TouchEvent.TOUCH_TAP, this.clickBack, this);
         this.once(egret.Event.REMOVED_FROM_STAGE, this.clear, this);
+        var tw = egret.Tween.get(this.shop_bg, { loop: true });
+        tw.to({ rotation: this.rotation + 1000 }, 3000);
     };
     p.clickBack = function (e) {
         var tw = egret.Tween.get(this);

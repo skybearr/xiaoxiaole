@@ -14,8 +14,8 @@ var ViewUtil = (function () {
     ViewUtil.getShape = function (width, height, color, alpha) {
         if (width === void 0) { width = 640; }
         if (height === void 0) { height = 960; }
-        if (color === void 0) { color = 0x888888; }
-        if (alpha === void 0) { alpha = 0.2; }
+        if (color === void 0) { color = 0x000000; }
+        if (alpha === void 0) { alpha = 0.7; }
         var shp = new egret.Shape();
         shp.graphics.beginFill(color, alpha);
         shp.graphics.drawRect(0, 0, width, height);

@@ -5,6 +5,7 @@
  */
 class MenuUI extends BasePopUI{
     private back_btn: BaseButton;
+    private shop_bg:eui.Image;
     
 	public constructor() {
     	  super();
@@ -25,6 +26,9 @@ class MenuUI extends BasePopUI{
         this.back_btn.startTween();
         this.back_btn.once(egret.TouchEvent.TOUCH_TAP,this.clickBack,this);
         this.once(egret.Event.REMOVED_FROM_STAGE,this.clear,this);
+        
+        var tw = egret.Tween.get(this.shop_bg,{loop:true});
+        tw.to({rotation:this.rotation + 1000},3000);
 	}
 	
 	private clickBack(e:egret.TouchEvent):void

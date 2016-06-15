@@ -1,12 +1,17 @@
 {
   "autoGenerateExmlsList": true,
   "exmls": [
+    "resource/assets/skins/BuyPropSkin.exml",
+    "resource/assets/skins/BuyWallSkin.exml",
     "resource/assets/skins/ChapterSelectSkin.exml",
     "resource/assets/skins/LoadingSkin.exml",
     "resource/assets/skins/LoginMainSkin.exml",
     "resource/assets/skins/LogoAnimationSkin.exml",
     "resource/assets/skins/MainMenuSkin.exml",
-    "resource/assets/skins/MissionListSkin.exml"
+    "resource/assets/skins/MissionListSkin.exml",
+    "resource/assets/skins/SettingSkin.exml",
+    "resource/assets/skins/ShopSkin.exml",
+    "resource/assets/skins/ShopSkinItem.exml"
   ],
   "skins": {}
 }

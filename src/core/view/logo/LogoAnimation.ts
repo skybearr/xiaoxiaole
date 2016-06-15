@@ -14,7 +14,7 @@ class LogoAnimation extends eui.Component{
 	}
 	
 	private init():void{
-    	  this.addChild(ViewUtil.getShape());
+    	  this.addChild(ViewUtil.getShape(GlobalData.GameStage_width,GlobalData.GameStage_height,0x888888,0.2));
         this.logo.anchorOffsetX = this.logo.width / 2;
         this.logo.anchorOffsetY = this.logo.height / 2;
         this.logo.x = this.width/2;
