@@ -49,6 +49,6 @@ class StoryLogic extends egret.EventDispatcher{
     
     private openUI():void
     {
-        UIManager.getInstance().openFirstUI(UIManager.CLASS_UI_INDEX_STORY,TweenManager.TWEEN_UI_RANDOM);
+        UIManager.getInstance().openFirstUI(UIManager.CLASS_UI_INDEX_STORY,TweenManager.TWEEN_UI_MOVE);
     }
 }

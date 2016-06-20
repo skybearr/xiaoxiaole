@@ -46,7 +46,7 @@ var LoadingUI = (function (_super) {
     p.setText = function (str) {
     };
     p.setProgress = function (current, total) {
-        this.progress_bar.width = (current / total) * this.bar_width_max;
+        this.progress_bar.width = (current / total) * this.bar_width_max + this.bar_width_min;
         this.progress_txt.text = "资源加载中..." + current + "/" + total;
     };
     p.clear = function () {

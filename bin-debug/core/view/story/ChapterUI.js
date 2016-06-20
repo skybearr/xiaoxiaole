@@ -38,6 +38,7 @@ var ChapterUI = (function (_super) {
         this.more_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickMoreGame, this);
     };
     p.clickMoreGame = function (e) {
+        SoundManager.getInstance().playEffectSound();
         UIManager.getInstance().popMessage(StringConst.String_00002, UIConst.POP_MESSAGE_TYPE_WINDOW);
     };
     p.clear = function () {

@@ -79,6 +79,7 @@ var ChapterSelectUI = (function (_super) {
     };
     //点击章节标题  章节列表的出现/消失的动画
     p.clickChapter = function (e) {
+        SoundManager.getInstance().playEffectSound();
         if (this.is_tween) {
             return;
         }

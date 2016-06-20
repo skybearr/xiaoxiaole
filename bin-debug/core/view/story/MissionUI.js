@@ -61,11 +61,12 @@ var MissionUI = (function (_super) {
             this.finger.scaleX = this.finger.scaleY = 0.7;
             this.finger.smoothing = true;
         }
+        //eui的localToGlobal好坑啊 全靠凑啊
         this.finger.x = this.current_mission_item.x + this.current_mission_item.width_set + 100;
         this.finger.y = this.current_mission_item.y + this.current_mission_item.height_set - 34 + this.mission_list_con.top;
         this.addChild(this.finger);
         var tw = egret.Tween.get(this.finger, { loop: true });
-        tw.to({ scaleX: 0.5, scaleY: 0.5 }, 500).to({ scaleX: 0.7, scaleY: 0.7 }, 500);
+        tw.to({ scaleX: 0.5, scaleY: 0.5 }, 400).to({ scaleX: 0.7, scaleY: 0.7 }, 400);
     };
     /**获取小关卡的状态  i 小关卡的索引 0-14*/
     p.getState = function (i) {
@@ -108,11 +109,13 @@ var MissionUI = (function (_super) {
         //        }
     };
     p.clickBack = function (e) {
+        SoundManager.getInstance().playEffectSound();
         if (this.parent != null) {
             this.parent.removeChild(this);
         }
     };
     p.clickItem = function (e) {
+        SoundManager.getInstance().playEffectSound();
         this.click_mission_item = e.currentTarget;
         var n = parseInt(e.currentTarget.name);
         if (e.currentTarget.state == StoryLogic.MISSION_ITEM_STATE_LOCK) {
@@ -120,6 +123,7 @@ var MissionUI = (function (_super) {
         }
         else {
             console.log("点击第" + this.charter_id + "章节 第" + (this.mission_index + 1) + "关卡 第" + n + "小关");
+            UIManager.getInstance().startFight(this.charter_id * 100 + n);
         }
     };
     p.clear = function (e) {

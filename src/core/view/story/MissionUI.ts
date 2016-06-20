@@ -153,6 +153,7 @@ class MissionUI extends eui.Component{
 	
 	private clickBack(e:TouchEvent):void
 	{
+        SoundManager.getInstance().playEffectSound();
 	    if(this.parent != null)
         {
             this.parent.removeChild(this);
@@ -161,6 +162,8 @@ class MissionUI extends eui.Component{
 	
 	private clickItem(e:egret.TouchEvent):void
 	{
+        SoundManager.getInstance().playEffectSound();
+        
         this.click_mission_item = e.currentTarget as MissionItem;
         
     	  var n:number = parseInt(e.currentTarget.name);
@@ -172,13 +175,14 @@ class MissionUI extends eui.Component{
          else
          {
             console.log("点击第" + this.charter_id + "章节 第" + (this.mission_index + 1) + "关卡 第" + n + "小关");
+            UIManager.getInstance().startFight(this.charter_id * 100 + n);
          }
 	}
 	
 	private clear(e:egret.Event):void
 	{
     	  this.removeChildren();
-          this.back_btn.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.clickBack,this);
+        this.back_btn.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.clickBack,this);
         StoryLogic.getInstance().removeEventListener(MyUIEvent.UPDATE_MISSION_ITEM,this.updateMissionItem,this);
     	  for(var i:number;i<this.mission_arr.length;i++)
         {

@@ -27,7 +27,7 @@ var StoryLogic = (function (_super) {
         this.openUI();
     };
     p.openUI = function () {
-        UIManager.getInstance().openFirstUI(UIManager.CLASS_UI_INDEX_STORY, TweenManager.TWEEN_UI_RANDOM);
+        UIManager.getInstance().openFirstUI(UIManager.CLASS_UI_INDEX_STORY, TweenManager.TWEEN_UI_MOVE);
     };
     StoryLogic.MISSION_STATE_LOCK = 0;
     StoryLogic.MISSION_STATE_WANTED = 1;

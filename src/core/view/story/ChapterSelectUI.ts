@@ -112,6 +112,7 @@ class ChapterSelectUI extends eui.Component{
     //点击章节标题  章节列表的出现/消失的动画
     private clickChapter(e:egret.TouchEvent):void
     {
+        SoundManager.getInstance().playEffectSound();
         if(this.is_tween)
         {
             return;

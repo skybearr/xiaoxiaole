@@ -41,6 +41,8 @@ class StoryUI extends BaseFirstUI{
         this.initEvent();
         
         this.loadChapter();
+        
+        SoundManager.getInstance().playBgSound(SoundManager.getInstance().sound_switch);
 	}
 	
 	private loadChapter():void
@@ -113,18 +115,21 @@ class StoryUI extends BaseFirstUI{
 	
 	private openMission(e:MyUIEvent):void
 	{
+        SoundManager.getInstance().playEffectSound();
         var ui:MissionUI = new MissionUI(this.chapter_id,e.data);
         this.addChild(ui);
 	}
 	
 	private changeChapter(e:MyUIEvent):void
 	{
+        SoundManager.getInstance().playEffectSound();
 	    this.new_chapter_id = e.data.id;
 	    this.loadChapter();
 	}
 	
     private clickMenu(e: TouchEvent):void
 	{
+        SoundManager.getInstance().playEffectSound();
         if(this.is_tween)
         {
             return;

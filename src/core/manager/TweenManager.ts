@@ -24,28 +24,145 @@ class TweenManager {
 
     private tween_ui_time: number = 500;
     
-    public uiDisappearTween(ui:egret.DisplayObject,type:number,extra:number,callback:Function,thisObj:any):void
-    {
+    /**对ui进行缓动进入*/
+    public uiAppearTween(ui: egret.DisplayObject,type: number,extra: number,callback: Function,thisObj: any): void {
         var tw = egret.Tween.get(ui);
-        var xx: number = 0;
-        var yy: number = 0;
+        var w:number = GlobalData.GameStage_width;
+        var h:number = GlobalData.GameStage_height;
+        var xx:number = 0;//目标x
+        var yy:number = 0;//目标y
+        //先根据类型初始化状态 
         if(type == TweenManager.TWEEN_UI_MOVE)//平移
         {
+            ui.anchorOffsetX = w/2;
+            ui.anchorOffsetY = h/2;
             if(extra == 0)//向右平移
             {
-                xx = GlobalData.GameStage_width;
+                ui.x = -w/2;
+                ui.y = h/2;
             }
             else if(extra == 1) //向下平移
             {
-                yy = GlobalData.GameStage_height;
+                ui.x = w/2;
+                ui.y = -h/2;
             }
             else if(extra == 2)//向左平移
             {
-                xx = -GlobalData.GameStage_width;
+                ui.x = w * 3/2;
+                ui.y = h/2;
             }
             else //向上平移
             {
-                yy = -GlobalData.GameStage_height;
+                ui.x = w/2;
+                ui.y = h *3/2;
+            }
+            if(callback == null) {
+                tw.to({ x: w / 2,y: h/2 },this.tween_ui_time);
+            } else {
+                tw.to({ x: w / 2,y: h/2 },this.tween_ui_time).call(callback,thisObj);
+            }
+        }
+        else if(type == TweenManager.TWEEN_UI_SCALE)//缩放：缩放完成以后原来界面才消失
+        {
+            if(extra == 0)//从正中间出来
+            {
+                //中间坐标不用变
+                ui.anchorOffsetX = w/2;
+                ui.anchorOffsetY = h/2;
+                ui.x = w/2;
+                ui.y = h/2;
+                xx = w/2;
+                yy = h/2;
+            }
+            else if(extra == 1) {//从右上方出来
+                ui.anchorOffsetX = w;
+                ui.anchorOffsetY = 0;
+                ui.x = w * 2;
+                ui.y = -h;
+                xx = w;
+                yy = 0;
+            }
+            else if(extra == 2)//从右下方出来
+            {
+                ui.anchorOffsetX = w;
+                ui.anchorOffsetY = h;
+                ui.x = w * 2;
+                ui.y = h * 2;
+                xx = w;
+                yy = h;
+            }
+            else if(extra == 3)//从左下方出来
+            {
+                ui.anchorOffsetX = 0;
+                ui.anchorOffsetY = h;
+                ui.x = -w;
+                ui.y = h * 2;
+                xx = 0;
+                yy = h;
+            }
+            else {//从左上方出来
+                ui.anchorOffsetX = 0;
+                ui.anchorOffsetY = 0;
+                ui.x = -w;
+                ui.y = -h;
+                xx = 0;
+                yy = 0;
+            }
+            ui.scaleX = ui.scaleY = 0;
+            if(callback == null) {
+                tw.to({ x: xx,y: yy,scaleX: 1,scaleY: 1},this.tween_ui_time);
+            } else {
+                tw.to({ x: xx,y: yy,scaleX: 1,scaleY: 1},this.tween_ui_time).call(callback,thisObj);
+            }
+
+        }
+        else if(type == TweenManager.TWEEN_UI_SCALE_ROTATION)//旋转
+        {
+            ui.alpha = 0;
+
+            if(callback == null) {
+                tw.to({ alpha: 1 },this.tween_ui_time);
+            } else {
+                tw.to({ alpha: 1 },this.tween_ui_time).call(callback,thisObj);
+            }
+        }
+    }
+    
+    /**对一级UI的缓动退出*/
+    public uiDisappearTween(ui:egret.DisplayObject,type:number,extra:number,callback:Function,thisObj:any):void
+    {
+        var tw = egret.Tween.get(ui);
+        var w: number = GlobalData.GameStage_width;
+        var h: number = GlobalData.GameStage_height;
+        var xx: number = 0;
+        var yy: number = 0;
+        
+        //所有要移出前 先把瞄点和坐标重置一下
+        if(type == TweenManager.TWEEN_UI_MOVE)//平移
+        {
+            ui.anchorOffsetX = w / 2;
+            ui.anchorOffsetY = h / 2;
+            ui.x = w/2;
+            ui.y = h/2;
+            if(extra == 0)//向右平移
+            {
+                xx = w*3/2;
+                yy = h/2;
+            }
+            else if(extra == 1) //向下平移
+            {
+                xx = w/2;
+                yy = h*3/2;
+            }
+            else if(extra == 2)//向左平移
+            {
+                xx = -w/2;
+                yy = h/2;
+            }
+            else //向上平移
+            {
+                xx = w/2;
+                yy = -h/2;
             }
             if(callback == null)
             {
@@ -55,11 +172,9 @@ class TweenManager {
                 tw.to({ x: xx,y: yy },this.tween_ui_time).call(callback,thisObj);
             }
         }
-        else if(type == TweenManager.TWEEN_UI_SCALE)//缩放：缩放完成以后原来界面才消失
+        else if(type == TweenManager.TWEEN_UI_SCALE)
         {
-            tw.to({ alpha: 0 },this.tween_ui_time);
-            if(callback == null) 
-            {
+            if(callback == null) {
                 tw.to({ alpha: 0 },this.tween_ui_time);
             } else {
                 tw.to({ alpha: 0 },this.tween_ui_time).call(callback,thisObj);
@@ -68,23 +183,23 @@ class TweenManager {
         else if(type == TweenManager.TWEEN_UI_SCALE_ROTATION) {
             if(extra == 0)//向右上角
             {
-                xx = GlobalData.GameStage_width;
-                yy = -GlobalData.GameStage_height;
+                xx = w;
+                yy = -h;
             }
             else if(extra == 1) //向右下平移
             {
-                xx = GlobalData.GameStage_width;
-                yy = GlobalData.GameStage_height;
+                xx = w;
+                yy = h;
             }
             else if(extra == 2)//向左下平移
             {
-                xx = -GlobalData.GameStage_width;
-                yy = GlobalData.GameStage_height;
+                xx = -w;
+                yy = h;
             }
             else //向左上平移
             {
-                xx = -GlobalData.GameStage_width;
-                yy = -GlobalData.GameStage_height;
+                xx = -w;
+                yy = -h;
             }
            
             if(callback == null) {
@@ -95,73 +210,74 @@ class TweenManager {
         }
     }
     
-    public uiAppearTween(ui:egret.DisplayObject,type:number,extra:number,callback:Function,thisObj:any):void
-    {
+    /**二级UI的缓动退出，与一级UId差别，方向相反。注意：callback不能为空，必须在callback内删除ui*/
+    public uiSecondDisappearTween(ui: egret.DisplayObject,type: number,extra: number,callback: Function,thisObj: any): void {
         var tw = egret.Tween.get(ui);
-        //先根据类型初始化状态 
+        var w: number = GlobalData.GameStage_width;
+        var h: number = GlobalData.GameStage_height;
+        var xx: number = 0;
+        var yy: number = 0;
+
+        //所有要移出前 先把瞄点和坐标重置一下
         if(type == TweenManager.TWEEN_UI_MOVE)//平移
         {
-            if(extra == 0)//向右平移
-            {
-                ui.x = -GlobalData.GameStage_width;
+            ui.anchorOffsetX = w / 2;
+            ui.anchorOffsetY = h / 2;
+            ui.x = w / 2;
+            ui.y = h / 2;
+            if(extra == 0)//进来的时候向右平移，消失的时候向左平移
+            {              
+                xx = -w / 2;
+                yy = h / 2;
             }
-            else if(extra == 1) //向下平移
+            else if(extra == 1) //向上平移
             {
-                ui.y = -GlobalData.GameStage_height;
+                xx = w / 2;
+                yy = -h / 2;
             }
             else if(extra == 2)//向左平移
             {
-                ui.x = GlobalData.GameStage_width;
+                xx = w * 3 / 2;
+                yy = h / 2;
             }
             else //向上平移
             {
-                ui.y = GlobalData.GameStage_height;
+                xx = w / 2;
+                yy = h * 3 / 2;
             }
             if(callback == null) {
-                tw.to({ x: 0,y: 0 },this.tween_ui_time);
+                tw.to({ x: xx,y: yy },this.tween_ui_time);
             } else {
-                tw.to({ x: 0,y: 0 },this.tween_ui_time).call(callback,thisObj);
-            }
-            
-        }
-        else if(type == TweenManager.TWEEN_UI_SCALE)//缩放：缩放完成以后原来界面才消失
-        {
-            if(extra == 0)//从正中间出来
-            {
-                //中间坐标不用变
-            }
-            else if(extra == 1) {//从右方出来
-                ui.x = GlobalData.GameStage_height / 2;
-            }
-            else if(extra == 2)//从下方出来
-            {
-                ui.y = GlobalData.GameStage_width / 2;
-            }
-            else if(extra == 2)//从左方出来
-            {
-                ui.x = -GlobalData.GameStage_width / 2;
-            }
-            else {//从上方出来
-                ui.y = -GlobalData.GameStage_height / 2;
-            }
-            ui.scaleX = ui.scaleY = 0.01;
-            if(callback == null) {
-                tw.to({ x: 0,y: 0,scaleX: 1,scaleY: 1,alpha: 1 },this.tween_ui_time);
-            } else {
-                tw.to({ x: 0,y: 0,scaleX: 1,scaleY: 1,alpha: 1 },this.tween_ui_time).call(callback,thisObj);
-            }
-           
-        }
-        else if(type == TweenManager.TWEEN_UI_SCALE_ROTATION)//旋转
-        {
-            ui.alpha = 0;
-            
-            if(callback == null) {
-                tw.to({ alpha: 1 },this.tween_ui_time);
-            } else {
-                tw.to({ alpha: 1 },this.tween_ui_time).call(callback,thisObj);
+                tw.to({ x: xx,y: yy },this.tween_ui_time).call(callback,thisObj);
             }
         }
+        else if(type == TweenManager.TWEEN_UI_SCALE) {
+            //由于进入的时候设置好了，退出时原路返回即可
+            tw.to({scaleX: 0,scaleY: 0 },this.tween_ui_time).call(callback,thisObj);
+        }
+        else if(type == TweenManager.TWEEN_UI_SCALE_ROTATION) {
+            if(extra == 0)//向右上角
+            {
+                xx = w;
+                yy = -h;
+            }
+            else if(extra == 1) //向右下平移
+            {
+                xx = w;
+                yy = h;
+            }
+            else if(extra == 2)//向左下平移
+            {
+                xx = -w;
+                yy = h;
+            }
+            else //向左上平移
+            {
+                xx = -w;
+                yy = -h;
+            }
 
+            tw.to({ x: xx,y: yy,scaleX: 0.01,scaleY: 0.01,rotation: 720 },this.tween_ui_time).call(callback,thisObj);
+        }
     }
 }

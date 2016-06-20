@@ -28,6 +28,7 @@ var StoryUI = (function (_super) {
         this.menu_btn.startTween();
         this.initEvent();
         this.loadChapter();
+        SoundManager.getInstance().playBgSound(SoundManager.getInstance().sound_switch);
     };
     p.loadChapter = function () {
         //组装需要加载的资源
@@ -83,14 +84,17 @@ var StoryUI = (function (_super) {
         this.once(egret.Event.REMOVED_FROM_STAGE, this.clear, this);
     };
     p.openMission = function (e) {
+        SoundManager.getInstance().playEffectSound();
         var ui = new MissionUI(this.chapter_id, e.data);
         this.addChild(ui);
     };
     p.changeChapter = function (e) {
+        SoundManager.getInstance().playEffectSound();
         this.new_chapter_id = e.data.id;
         this.loadChapter();
     };
     p.clickMenu = function (e) {
+        SoundManager.getInstance().playEffectSound();
         if (this.is_tween) {
             return;
         }
