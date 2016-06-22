@@ -108,6 +108,7 @@ class FightMainUI extends eui.Component{
         this.once(egret.Event.REMOVED_FROM_STAGE,this.clear,this);
 	}
 	
+	/**战士攻击*/
     private soldierAttack(e:MyUIEvent):void
     {
         var self = this;
@@ -129,6 +130,7 @@ class FightMainUI extends eui.Component{
         tw.to({y:330},t).call(a,self);
     }
     
+    /**根据vo寻找当前图上的战士*/
     private getSoldier(vo:SoldierVO):SoldierListView
     {
         for(var i: number = 0;i < this.soldier_arr.length;i++)
@@ -142,6 +144,7 @@ class FightMainUI extends eui.Component{
         return null;
     }
 	
+    /**合成战士*/
     private soldierCompose(e:MyUIEvent):void
     {
         if(this.soldier_arr == null)

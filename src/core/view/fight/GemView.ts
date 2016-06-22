@@ -17,6 +17,7 @@ class GemView extends egret.Sprite{
     	  this.init();
 	}
 	
+	/**当合成战士时，宝石暂时做隐藏*/
     public setAppear(b:boolean):void
     {
         this.visible = b;
@@ -85,10 +86,16 @@ class GemView extends egret.Sprite{
 	private initEvent():void
 	{
 	    this.addEventListener(egret.TouchEvent.TOUCH_TAP,this.click,this);
+	    this.once(egret.Event.REMOVED_FROM_STAGE,this.clear,this);
 	}
 	
 	private click():void
 	{
 	    FightLogic.getInstance().setSelectGem(this.vo.index);
+	}
+	
+	private clear():void
+	{
+        this.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.click,this);
 	}
 }

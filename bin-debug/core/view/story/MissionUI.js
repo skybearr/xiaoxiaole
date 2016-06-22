@@ -65,6 +65,7 @@ var MissionUI = (function (_super) {
         this.finger.x = this.current_mission_item.x + this.current_mission_item.width_set + 100;
         this.finger.y = this.current_mission_item.y + this.current_mission_item.height_set - 34 + this.mission_list_con.top;
         this.addChild(this.finger);
+        this.finger.touchEnabled = false;
         var tw = egret.Tween.get(this.finger, { loop: true });
         tw.to({ scaleX: 0.5, scaleY: 0.5 }, 400).to({ scaleX: 0.7, scaleY: 0.7 }, 400);
     };

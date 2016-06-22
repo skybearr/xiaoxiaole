@@ -77,6 +77,7 @@ var FightMainUI = (function (_super) {
         FightLogic.getInstance().addEventListener(MyUIEvent.FIGHT_SOLDIER_ATTACK, this.soldierAttack, this);
         this.once(egret.Event.REMOVED_FROM_STAGE, this.clear, this);
     };
+    /**战士攻击*/
     p.soldierAttack = function (e) {
         var self = this;
         var soldier = this.getSoldier(e.data);
@@ -94,6 +95,7 @@ var FightMainUI = (function (_super) {
         var t = (soldier.y - 330) * 2;
         tw.to({ y: 330 }, t).call(a, self);
     };
+    /**根据vo寻找当前图上的战士*/
     p.getSoldier = function (vo) {
         for (var i = 0; i < this.soldier_arr.length; i++) {
             var soldier = this.soldier_arr[i];
@@ -103,6 +105,7 @@ var FightMainUI = (function (_super) {
         }
         return null;
     };
+    /**合成战士*/
     p.soldierCompose = function (e) {
         if (this.soldier_arr == null) {
             this.soldier_arr = [];

@@ -9,7 +9,8 @@ class SoldierListView extends egret.Sprite{
         super();
         this.vo = v;
         this.touchEnabled = true;
-        if(this.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG) {
+        
+        if(this.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG) {//大战士
             var s: SoldierView = new SoldierView(this.vo.gem_type);
             s.scaleX = s.scaleY = 2;
             this.addChild(s);
@@ -32,6 +33,7 @@ class SoldierListView extends egret.Sprite{
     }
     
     private fly:egret.MovieClip;
+    /**移动到城墙变身为球型效果*/
     public change():void
     {
         this.removeChildren();

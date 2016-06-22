@@ -30,6 +30,7 @@ var SoldierListView = (function (_super) {
         this.once(egret.Event.REMOVED_FROM_STAGE, this.clear, this);
     }
     var d = __define,c=SoldierListView,p=c.prototype;
+    /**移动到城墙变身为球型效果*/
     p.change = function () {
         this.removeChildren();
         this.fly = FightLogic.getInstance().getMovieClip("fly");

@@ -14,6 +14,7 @@ var GemView = (function (_super) {
         this.init();
     }
     var d = __define,c=GemView,p=c.prototype;
+    /**当合成战士时，宝石暂时做隐藏*/
     p.setAppear = function (b) {
         this.visible = b;
         this.touchChildren = this.touchEnabled = b;
@@ -64,9 +65,13 @@ var GemView = (function (_super) {
     };
     p.initEvent = function () {
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
+        this.once(egret.Event.REMOVED_FROM_STAGE, this.clear, this);
     };
     p.click = function () {
         FightLogic.getInstance().setSelectGem(this.vo.index);
+    };
+    p.clear = function () {
+        this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.click, this);
     };
     return GemView;
 }(egret.Sprite));

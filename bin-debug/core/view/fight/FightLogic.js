@@ -40,6 +40,7 @@ var FightLogic = (function (_super) {
             this.dispatchEvent(event);
         }
     };
+    /**判断合成战士的坐标是否已经有合成的战士了*/
     p.checkHasSoldier = function (arr) {
         if (arr == null) {
             return false;
@@ -100,6 +101,7 @@ var FightLogic = (function (_super) {
             }
             index1++;
         }
+        //如果不满4个，或者这个数组中已经处于一个合成的战士中
         if (arr.length < 4 || this.checkHasSoldier(vo.data)) {
             arr = [];
         }
@@ -123,6 +125,7 @@ var FightLogic = (function (_super) {
             }
             count++;
         }
+        //如果不满4个，或者当前检测的位置是否在这个合成的战士中，或者这个数组中已经处于一个合成的战士中
         if (arr.length < 4 || arr.indexOf(index) == -1 || this.checkHasSoldier(arr)) {
             arr = [];
         }
@@ -149,6 +152,7 @@ var FightLogic = (function (_super) {
             }
             count += 6;
         }
+        //如果不满4个，或者当前检测的位置是否在这个合成的战士中，或者这个数组中已经处于一个合成的战士中
         if (arr.length < 4 || arr.indexOf(index) == -1 || this.checkHasSoldier(arr)) {
             return null;
         }
