@@ -117,7 +117,6 @@ var UIManager = (function (_super) {
     /**打开一个二级界面*/
     p.openSecondUI = function (ui, tweenType) {
         if (tweenType === void 0) { tweenType = 0; }
-        console.log(this.hashCode.toString());
         if (this.is_ui_tween) {
             console.log("正在打开界面，禁止操作");
             return;
@@ -153,18 +152,18 @@ var UIManager = (function (_super) {
         if (thisobj.secondCon.numChildren > 0) {
             thisobj.secondCon.removeChildAt(thisobj.secondCon.numChildren - 1);
         }
-        console.log(this.hashCode.toString());
         this.is_ui_tween = false;
     };
     /**关闭当前最上层的二级界面*/
-    p.closeSecondUI = function () {
+    p.closeSecondUI = function (closeImmediately) {
+        if (closeImmediately === void 0) { closeImmediately = false; }
         if (this.is_ui_tween) {
             console.log("正在打开界面，禁止操作");
             return;
         }
         this.is_ui_tween = true;
         if (this.secondCon.numChildren > 0) {
-            if (this.second_tween_type == TweenManager.TWEEN_UI_NONE) {
+            if (closeImmediately || this.second_tween_type == TweenManager.TWEEN_UI_NONE) {
                 this.closeSecondFinish();
             }
             else {

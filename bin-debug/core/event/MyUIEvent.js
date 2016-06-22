@@ -22,6 +22,14 @@ var MyUIEvent = (function (_super) {
     MyUIEvent.UPDATE_MISSION_ITEM = "UPDATE_MISSION_ITEM";
     /**关闭菜单界面*/
     MyUIEvent.CLOSE_MENU = "CLOSE_MENU";
+    /**战斗界面——关闭界面*/
+    MyUIEvent.FIGHT_CLOSEUI = "FIGHT_CLOSEUI";
+    /**战斗界面--宝石操作*/
+    MyUIEvent.FIGHT_GEM_OPERATOR = "FIGHT_GEM_OPERATOR";
+    /**战斗界面--战士攻击*/
+    MyUIEvent.FIGHT_SOLDIER_ATTACK = "FIGHT_SOLDIER_ATTACK";
+    /**战斗界面--合成战士*/
+    MyUIEvent.FIGHT_SOLDIER_COMPOSE = "FIGHT_SOLDIER_COMPOSE";
     /**加载资源：章节资源*/
     MyUIEvent.LOAD_STORY_CHAPTER = "LOAD_STORY_CHAPTER";
     return MyUIEvent;

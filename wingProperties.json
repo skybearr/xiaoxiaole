@@ -1873,6 +1873,11 @@
 					"isFolder":false,
 					"key":"regbtn~1_png",
 					"name":"regbtn~1_png"
+				},
+				{
+					"isFolder":false,
+					"key":"bomb_png",
+					"name":"bomb_png"
 				}
 			]
 		}

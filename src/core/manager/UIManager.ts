@@ -176,7 +176,6 @@ class UIManager extends egret.EventDispatcher{
 	/**打开一个二级界面*/
     public openSecondUI(ui:BaseSecondUI,tweenType:number=0):void
     {
-        console.log(this.hashCode.toString());
         if(this.is_ui_tween) {
             console.log("正在打开界面，禁止操作");
             return;
@@ -214,12 +213,11 @@ class UIManager extends egret.EventDispatcher{
         if(thisobj.secondCon.numChildren > 0) {
             thisobj.secondCon.removeChildAt(thisobj.secondCon.numChildren - 1);
         }
-        console.log(this.hashCode.toString());
         this.is_ui_tween = false;
     }
     
     /**关闭当前最上层的二级界面*/
-    public closeSecondUI():void
+    public closeSecondUI(closeImmediately:boolean=false):void
     {
         if(this.is_ui_tween) {
             console.log("正在打开界面，禁止操作");
@@ -228,7 +226,7 @@ class UIManager extends egret.EventDispatcher{
         this.is_ui_tween = true;
         if(this.secondCon.numChildren > 0)
         {
-            if(this.second_tween_type == TweenManager.TWEEN_UI_NONE)
+            if(closeImmediately || this.second_tween_type == TweenManager.TWEEN_UI_NONE)
             {
                 this.closeSecondFinish();
             }
