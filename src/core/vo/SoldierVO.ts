@@ -16,6 +16,4 @@ class SoldierVO {
 	public data:number[];
 	/**宝石类型*/
 	public gem_type:number;
-	
-	public index_in_arr:number;
 }

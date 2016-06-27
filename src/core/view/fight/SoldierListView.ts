@@ -5,7 +5,7 @@
  */
 class SoldierListView extends egret.Sprite{
     public vo:SoldierVO;
-    public index_in_arr:number;
+//    public index_in_arr:number;
     public constructor(v:SoldierVO) {
         super();
         this.vo = v;
@@ -48,6 +48,7 @@ class SoldierListView extends egret.Sprite{
     
     private click():void
     {
+        FightLogic.getInstance().attack_combo_num = 1;
         FightLogic.getInstance().soldierFight(this.vo);
     }
     

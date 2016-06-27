@@ -52,6 +52,7 @@ class UIManager extends egret.EventDispatcher{
     public startGame():void
 	{
     	  this.initUIClass();  
+    	  DataManager.getInstance().initJsonData();
     	
 	    this.mainCon = new egret.DisplayObjectContainer();
         this.secondCon = new egret.DisplayObjectContainer();

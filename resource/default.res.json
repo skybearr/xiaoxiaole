@@ -9,7 +9,7 @@
 			"name":"loading"
 		},
 		{
-			"keys":"loadbg_jpg,startgame_png,bbg_png,bdbtn_png,btnbg_png,buybtn_png,caidan_png,cancel_btn_png,combo_png,defblood_png,defbloodbg_png,di_png,djinfobg_png,djtit_png,exp_png,expbar_png,expbg_png,fanhui_png,fightbg0_jpg,fightbg1_jpg,fightbg2_jpg,fightbgb_jpg,finger_png,fing_Arrow_png,forgetpsd_png,getbtn_png,getsuc_png,giveupbtn_png,goback_png,gobackbtn_png,goback_arrow_png,goback_btn_png,gold_png,goout_png,guan_png,infobg_png,inputbg_png,jbbg_png,jyjlbg_png,lb_bg_png,lb_tit_png,lb_txt_png,loading_png,logbtn_png,logtit_png,losimg_png,lostit_png,menubtn_png,menubtnbg_png,munebg_png,npcimg_png,offlogbtn_png,ok_btn_png,other_jpg,pause_png,paustit_png,paywanba_png,playinfobg_png,playlv_png,propts_png,qued_btn_png,quicklog_png,regbtn_png,reglogbg_png,regtit_png,reward_png,rush_btn_png,setbg_png,share_png,shop_btn_png,startnew_png,start_btn_png,star_a_png,star_b_png,sucbg_png,tab_dazhe_png,updatebtn_png,wallbv_png,wallbvbg_png,walltit_png,wallts_png,winimg_png,wintit_png,xzts_jpg,ydbox_png,main_json,regbtn~1_png,bg_mp3,sound_10_wav,sound_1_wav,sound_12_wav,sound_9_wav,sound_11_wav,sound_2_wav,sound_3_wav,sound_4_wav,sound_5_wav,sound_6_wav,sound_7_wav,sound_8_wav,wnum_json,beattack_json,def_json,fight_json,menu_json,set_json,skill_json,wall_json,ynum_json,bomb_json,bomb_png",
+			"keys":"loadbg_jpg,startgame_png,bbg_png,bdbtn_png,btnbg_png,buybtn_png,caidan_png,cancel_btn_png,combo_png,defblood_png,defbloodbg_png,di_png,djinfobg_png,djtit_png,exp_png,expbar_png,expbg_png,fanhui_png,fightbg0_jpg,fightbg1_jpg,fightbg2_jpg,fightbgb_jpg,finger_png,fing_Arrow_png,forgetpsd_png,getbtn_png,getsuc_png,giveupbtn_png,goback_png,gobackbtn_png,goback_arrow_png,goback_btn_png,gold_png,goout_png,guan_png,infobg_png,inputbg_png,jbbg_png,jyjlbg_png,lb_bg_png,lb_tit_png,lb_txt_png,loading_png,logbtn_png,logtit_png,losimg_png,lostit_png,menubtn_png,menubtnbg_png,munebg_png,npcimg_png,offlogbtn_png,ok_btn_png,other_jpg,pause_png,paustit_png,paywanba_png,playinfobg_png,playlv_png,propts_png,qued_btn_png,quicklog_png,regbtn_png,reglogbg_png,regtit_png,reward_png,rush_btn_png,setbg_png,share_png,shop_btn_png,startnew_png,start_btn_png,star_a_png,star_b_png,sucbg_png,tab_dazhe_png,updatebtn_png,wallbv_png,wallbvbg_png,walltit_png,wallts_png,winimg_png,wintit_png,xzts_jpg,ydbox_png,main_json,regbtn~1_png,bg_mp3,sound_10_wav,sound_1_wav,sound_12_wav,sound_9_wav,sound_11_wav,sound_2_wav,sound_3_wav,sound_4_wav,sound_5_wav,sound_6_wav,sound_7_wav,sound_8_wav,wnum_json,beattack_json,def_json,fight_json,menu_json,set_json,skill_json,wall_json,ynum_json,bomb_json,bomb_png,Definfos_json",
 			"name":"game"
 		}
 	],
@@ -623,6 +623,51 @@
 			"name":"bomb_png",
 			"type":"image",
 			"url":"assets/json/bomb.png"
+		},
+		{
+			"name":"DayRewardData_json",
+			"type":"json",
+			"url":"assets/data/DayRewardData.json"
+		},
+		{
+			"name":"Definfos_json",
+			"type":"json",
+			"url":"assets/data/Definfos.json"
+		},
+		{
+			"name":"GameLev_json",
+			"type":"json",
+			"url":"assets/data/GameLev.json"
+		},
+		{
+			"name":"GameList_json",
+			"type":"json",
+			"url":"assets/data/GameList.json"
+		},
+		{
+			"name":"PropData_json",
+			"type":"json",
+			"url":"assets/data/PropData.json"
+		},
+		{
+			"name":"ShopData_json",
+			"type":"json",
+			"url":"assets/data/ShopData.json"
+		},
+		{
+			"name":"UpdateData_json",
+			"type":"json",
+			"url":"assets/data/UpdateData.json"
+		},
+		{
+			"name":"UserData_json",
+			"type":"json",
+			"url":"assets/data/UserData.json"
+		},
+		{
+			"name":"WallData_json",
+			"type":"json",
+			"url":"assets/data/WallData.json"
 		}
 	]
 }

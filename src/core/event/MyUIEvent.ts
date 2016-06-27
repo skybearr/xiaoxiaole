@@ -32,6 +32,8 @@ class MyUIEvent extends egret.Event{
     public static FIGHT_SOLDIER_COMPOSE: string = "FIGHT_SOLDIER_COMPOSE";
     /**战斗界面--攻击后宝石补全*/
     public static FIGHT_GEM_COMPLEMENT: string = "FIGHT_GEM_COMPLEMENT";
+    /**战斗界面--连击：战士合成+自动攻击*/
+    public static FIGHT_SOLDIER_COMBO: string = "FIGHT_SOLDIER_COMBO";
     
     /**加载资源：章节资源*/
     public static LOAD_STORY_CHAPTER: string = "LOAD_STORY_CHAPTER";

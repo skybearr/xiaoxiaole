@@ -49,9 +49,31 @@ class FightLogic extends egret.EventDispatcher{
     /**一个永远不会重复的ID，仅供soloderVO生成时使用*/
     public soldier_max_id: number = 1;
     
+    /**敌人数组*/
+    public enemy_arr:EnemyVO[];
+    
+    /**敌人行动*/
+    public enemyAction():void
+    {
+        
+    }
+    
+    /**初始化敌人*/
+    public getEnemys():EnemyVO[]
+    {
+        this.enemy_arr = [];
+        for(var i: number = 0;i < 50;i++){
+            var vo:EnemyVO = DataManager.getInstance().getEnemyVOByID(i);
+            this.enemy_arr.push(vo);
+        }
+        return this.enemy_arr;
+    }
+    
+    
     /**战士攻击以后，先清除战士，原来的宝石消失，后面的往前补充,在这个过程中如果有战士因移动取消了，要一起操作*/
     public gemComplement(vo:SoldierVO):void
     {
+        console.log("gemComplement");
         var indexx: number = this.getSoldierIndexByID(vo.id);
         if(indexx != -1){
             this.soldier_arr.splice(indexx,1);
@@ -96,6 +118,7 @@ class FightLogic extends egret.EventDispatcher{
     /**根据id找战士*/
     private getSoldierIndexByID(id:number):number
     {
+        console.log("getSoldierIndexByID");
         for(var i:number=0;i<this.soldier_arr.length;i++){
             if(this.soldier_arr[i].id == id)
             {
@@ -108,6 +131,7 @@ class FightLogic extends egret.EventDispatcher{
     /**从已合成的战士中去掉取消的*/
     private soldierCancel(arr:number[])
     {
+        console.log("soldierCancel");
         for(var i: number = 0;i < this.soldier_arr.length;i++){
             if(arr.indexOf(this.soldier_arr[i].id) != -1)
             {
@@ -134,6 +158,7 @@ class FightLogic extends egret.EventDispatcher{
      * @param arr
      */
     private getMoveSolodiers(arr: number[]): number[] {
+        console.log("getMoveSolodiers");
         var ids: number[] = [];
         for(var j: number = 0;j < this.soldier_arr.length;j++) {
             var data = this.soldier_arr[j].data;
@@ -156,6 +181,7 @@ class FightLogic extends egret.EventDispatcher{
      */
     private getCancelSolodiers(arr:number[]):number[]
     {
+        console.log("getCancelSolodiers");
         var ids:number[] = [];
         for(var j: number = 0;j < this.soldier_arr.length;j++) {
             var data = this.soldier_arr[j].data;
@@ -221,10 +247,49 @@ class FightLogic extends egret.EventDispatcher{
      * @param arr 从这些坐标开始检测所有坐标及以下*/
     public checkAttackCombo(arr:number[]):void
     {
-        for(var i:number=0;i<arr.length;i++){
-            
+        var soldiers: SoldierVO[] = [];
+        //如果原来下面就有战士了，先加入
+        
+        //把这个索引以下所有坐标都加入
+        var indexs:number[] = this.getBelowIndexs(arr);
+        for(var i: number = 0;i < indexs.length;i++){
+            var vo: SoldierVO = this.checkCompose(i);
+            if(vo != null) {
+                soldiers.push(vo);
+                console.log(vo.data);
+            }
+        }
+        if(soldiers.length > 0)
+        {
+            var e:MyUIEvent = new MyUIEvent(MyUIEvent.FIGHT_SOLDIER_COMBO);
+            e.data = soldiers;
+            this.dispatchEvent(e);
+        }
+        else
+        {
+            this.attack_combo_num = 0;
         }
     }
+    
+    /**获取这个数组索引及其以下所有坐标*/
+    private getBelowIndexs(arr:number[]):number[]
+    {
+        var a:number[] = arr;
+        for(var i:number=0;i<arr.length;i++){
+            var count:number = arr[i];
+            while(count<30)
+            {
+                if(a.indexOf(count) == -1)
+                {
+                    a.push(count);
+                }
+                count += 6;
+            }
+        } 
+        
+        return a;
+    }
+    
     
     /**初始化检测所有宝石是否有合成*/
     public checkAllGemCompose():void
@@ -410,13 +475,12 @@ class FightLogic extends egret.EventDispatcher{
     /**战士攻击*/
     public soldierFight(vo:SoldierVO):void
     {
-        if(this.is_gem_move)
+        if(this.is_gem_move && this.attack_combo_num == 0)
         {
             return ;
         }
         this.is_gem_move = true;
         this.current_select_gem = -1;
-        this.attack_combo_num = 1;//每次点击设置为1，攻击完成后如果有则连击
         var event:MyUIEvent = new MyUIEvent(MyUIEvent.FIGHT_SOLDIER_ATTACK);
         event.data = vo;
         this.dispatchEvent(event);
@@ -450,9 +514,9 @@ class FightLogic extends egret.EventDispatcher{
     {
         this.gem_arr = this.getRandomGems(30);
         
-        this.gem_arr = [2,2,2,2,2,2,
-                        2,2,5,3,0,1,
-                        2,2,2,1,1,4,
+        this.gem_arr = [3,2,2,2,2,1,
+                        3,3,1,1,1,3,
+                        2,3,2,4,1,4,
                         2,2,2,1,4,1,
                         2,3,2,1,1,1];
         for(var i: number = 0;i < 5;i++) {

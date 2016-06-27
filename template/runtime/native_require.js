@@ -15,6 +15,7 @@ var game_file_list = [
 	"bin-debug/core/data/StringConst.js",
 	"bin-debug/core/data/UIConst.js",
 	"bin-debug/core/event/MyUIEvent.js",
+	"bin-debug/core/manager/DataManager.js",
 	"bin-debug/core/manager/LoadManager.js",
 	"bin-debug/core/manager/SoundManager.js",
 	"bin-debug/core/manager/TweenManager.js",

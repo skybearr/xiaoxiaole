@@ -4,6 +4,8 @@ declare class BuyPropSkin extends eui.Skin{
 }
 declare class ChapterSelectSkin extends eui.Skin{
 }
+declare class EnemyBarSkin extends eui.Skin{
+}
 declare class ExpBarSkin extends eui.Skin{
 }
 declare class FightBgSkin extends eui.Skin{

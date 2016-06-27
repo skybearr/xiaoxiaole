@@ -10,11 +10,11 @@ class FightMainUI extends eui.Component{
     private enemy_arr:EnemyView[];
     private wall_arr:WallView[];
     private gem_arr:GemView[];
+    private soldier_arr: SoldierListView[] = [];
     private wall_con: egret.Sprite;
     private enemy_con: egret.Sprite;
     private gem_con: egret.Sprite;
     
-    private soldier_arr:SoldierListView[];
     private last_gem:GemView;
     private target_gem:GemView;
     private gem_move_time: number = 300;
@@ -90,13 +90,15 @@ class FightMainUI extends eui.Component{
 	
 	private initEnemy():void
 	{
-        for(var i: number = 0;i < 120;i++) {
-            var enemy: EnemyView = new EnemyView(i,new EnemyVO());
+    	  var arr:EnemyVO[] = FightLogic.getInstance().getEnemys();
+          for(var i: number = 0;i < arr.length;i++) {
+            var enemy: EnemyView = new EnemyView(i,arr[i]);
             enemy.x = enemy.width_set * (i % 6);
-            enemy.y = 60 - FightLogic.getInstance().step_height * Math.floor(i / 6);
+            enemy.y = 150 - FightLogic.getInstance().step_height * Math.floor(i / 6);
             this.enemy_arr.push(enemy);
-            this.enemy_con.addChild(enemy);
+            this.enemy_con.addChildAt(enemy,0);
         }
+          this.enemy_con.x = (this.width - this.enemy_con.width) / 2 - 5;
 	}
 	
 	private initEvent():void
@@ -107,22 +109,51 @@ class FightMainUI extends eui.Component{
         FightLogic.getInstance().addEventListener(MyUIEvent.FIGHT_SOLDIER_COMPOSE,this.soldierCompose,this);
         FightLogic.getInstance().addEventListener(MyUIEvent.FIGHT_SOLDIER_ATTACK,this.soldierAttack,this);
         FightLogic.getInstance().addEventListener(MyUIEvent.FIGHT_GEM_COMPLEMENT,this.gemComplement,this);
+        FightLogic.getInstance().addEventListener(MyUIEvent.FIGHT_SOLDIER_COMBO,this.soldierCombo,this);
         this.once(egret.Event.REMOVED_FROM_STAGE,this.clear,this);
 	}
+	
+	/**连击*/
+    private soldierCombo(e:MyUIEvent):void
+    {
+        var arr:SoldierVO[] = e.data;
+        this.soldierComposeReal(arr);
+        
+        //合成以后等待上面攻击完成后调用，现模拟
+        setTimeout(this.soldierComboReal,2000,arr);
+    }
+    private soldierComboReal(arr:SoldierVO[]):void
+    {
+        FightLogic.getInstance().attack_combo_num++;//一次检测只能算一次连击
+        for(var i: number = 0;i < arr.length;i++) {
+            FightLogic.getInstance().soldierFight(arr[i]);
+        }
+    }
 	
 	/**战士攻击以后，原来的宝石消失，后面的往前补充,补充结束后再次检测是否可以连击*/
 	private gemComplement(e:MyUIEvent):void
 	{
+        console.log("gemComplement");
 	    //e.data = { disappear: arr_disappear,move: arr_move_up,complement:arr_complement,cancel:arr_cancel,movegrid:grid_num};
     	  //下面顺序不能乱，否则数据会错
         this.soldierCancel(e.data.cancel);
+        console.log("soldierCancel");
         this.soldierMove(e.data.move_soldiers,e.data.movegrid);
+        console.log("soldierMove");
         this.gemDisappear(e.data.disappear);
+        console.log("gemDisappear");
         this.gemMoveUp(e.data.move,e.data.movegrid);
+        console.log("gemMoveUp");
         this.gemBelowComplement(e.data.complement,e.data.movegrid);
+        console.log("gemBelowComplement");
         //补充完成后，要重新检测下面是否合成战士,
         var lag:number = this.gem_move_time * e.data.movegrid + 500;
-        setTimeout(FightLogic.getInstance().checkAttackCombo,lag,[e.data.disappear]);
+        setTimeout(this.checkCombo,lag,e.data.disappear);
+	}
+	
+	private checkCombo(arr:number[]):void
+	{
+        FightLogic.getInstance().checkAttackCombo(arr);
 	}
 	
 	/**战士攻击后，原来位置上的宝石销毁*/
@@ -178,10 +209,21 @@ class FightMainUI extends eui.Component{
                     gem.setAppear(true);
                 }
                 //销毁战士
+                this.removeSoldier(soldier.vo.id);
                 if(soldier.parent != null) {
                     soldier.parent.removeChild(soldier);
                 }
-                this.soldier_arr.splice(soldier.index_in_arr,1);
+                
+            }
+        }
+    }
+    
+    private removeSoldier(id:number):void
+    {
+        for(var i:number=0;i<this.soldier_arr.length;i++){
+            if(this.soldier_arr[i].vo.id == id)
+            {
+                this.soldier_arr.splice(i,1);
             }
         }
     }
@@ -206,13 +248,16 @@ class FightMainUI extends eui.Component{
     private soldierAttack(e:MyUIEvent):void
     {
         var self = this;
+        if(e.data == null){
+            console.log("soldierAttack错误");
+        }
         var soldier = this.getSoldier(e.data.id);
         var tw = egret.Tween.get(soldier);
         var f = function():void
         {
             if(soldier != null && soldier.parent != null)
             {
-                self.soldier_arr.splice(soldier.index_in_arr,1);
+                self.removeSoldier(soldier.vo.id);
                 soldier.parent.removeChild(soldier);
                 FightLogic.getInstance().is_gem_move = false;
             }
@@ -236,7 +281,6 @@ class FightMainUI extends eui.Component{
              var soldier = this.soldier_arr[i];   
              if(soldier.vo.id == id)
              {
-                 soldier.index_in_arr = i;
                  return soldier;
              }
         }
@@ -246,14 +290,17 @@ class FightMainUI extends eui.Component{
     /**合成战士*/
     private soldierCompose(e:MyUIEvent):void
     {
-        if(this.soldier_arr == null)
-        {
+        var arr:SoldierVO[] = e.data;
+        this.soldierComposeReal(e.data);
+        
+    }
+    private soldierComposeReal(arr:SoldierVO[]):void
+    {
+        if(this.soldier_arr == null) {
             this.soldier_arr = [];
         }
-        var arr:SoldierVO[] = e.data;
-        for(var i:number=0;i<arr.length;i++)
-        {
-            var vo:SoldierVO = arr[i];
+        for(var i: number = 0;i < arr.length;i++) {
+            var vo: SoldierVO = arr[i];
             var soldier: SoldierListView = new SoldierListView(vo);
             soldier.x = this.gem_con.x + this.gem_arr[vo.data[0]].x;
             soldier.y = this.gem_con.y + this.gem_arr[vo.data[0]].y;
@@ -334,6 +381,8 @@ class FightMainUI extends eui.Component{
         FightLogic.getInstance().is_gem_move = true;
         t1.to({x:tarX,y:tarY},this.gem_move_time).call(this.gemMoveFinish,this);
         t2.to({ x:lastX,y: lastY },this.gem_move_time);
+        
+        FightLogic.getInstance().enemyAction();
     }
     
     private gemMoveFinish():void
@@ -397,5 +446,6 @@ class FightMainUI extends eui.Component{
         FightLogic.getInstance().removeEventListener(MyUIEvent.FIGHT_SOLDIER_COMPOSE,this.soldierCompose,this);
         FightLogic.getInstance().removeEventListener(MyUIEvent.FIGHT_SOLDIER_ATTACK,this.soldierAttack,this);
         FightLogic.getInstance().removeEventListener(MyUIEvent.FIGHT_GEM_COMPLEMENT,this.gemComplement,this);
+        FightLogic.getInstance().removeEventListener(MyUIEvent.FIGHT_SOLDIER_COMBO,this.soldierCombo,this);
 	}
 }
