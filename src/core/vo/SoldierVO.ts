@@ -5,6 +5,8 @@
  */
 class SoldierVO {
 	public constructor() {
+        FightLogic.getInstance().soldier_max_id ++;
+    	  this.id = FightLogic.getInstance().soldier_max_id;
 	}
 	
 	public id:number;
@@ -14,4 +16,6 @@ class SoldierVO {
 	public data:number[];
 	/**宝石类型*/
 	public gem_type:number;
+	
+	public index_in_arr:number;
 }

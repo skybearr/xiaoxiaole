@@ -5,6 +5,7 @@
  */
 class SoldierListView extends egret.Sprite{
     public vo:SoldierVO;
+    public index_in_arr:number;
     public constructor(v:SoldierVO) {
         super();
         this.vo = v;
@@ -32,19 +33,16 @@ class SoldierListView extends egret.Sprite{
         this.once(egret.Event.REMOVED_FROM_STAGE,this.clear,this);
     }
     
-    private fly:egret.MovieClip;
+    
     /**移动到城墙变身为球型效果*/
     public change():void
     {
-        this.removeChildren();
-        this.fly = FightLogic.getInstance().getMovieClip("fly");
-        if(this.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG)
+        var index:number=0;
+        while(index < this.numChildren)
         {
-            this.fly.scaleX = this.scaleY = 2;
+            (this.getChildAt(index) as SoldierView).changeFly();
+            index ++;
         }
-        this.fly.frameRate = 12;
-        this.fly.play(-1);
-        this.addChild(this.fly);
     }
     
     
@@ -57,10 +55,6 @@ class SoldierListView extends egret.Sprite{
     {
         this.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.click,this);
         this.removeChildren();
-        if(this.fly != null)
-        {
-            this.fly.stop();
-            this.fly = null;
-        }
+        this.vo = null;
     }
 }

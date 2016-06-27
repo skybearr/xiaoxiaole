@@ -10,7 +10,7 @@ class GemView extends egret.Sprite{
     public width_set:number = 100;
     public height_set:number = 90;
     
-	public constructor(i:number,v:GemVO) {
+	public constructor(v:GemVO) {
     	  super();
     	  this.vo = v;
         this.addChild(ViewUtil.getShape(this.width_set,this.height_set));
@@ -40,7 +40,9 @@ class GemView extends egret.Sprite{
         mc.once(egret.Event.COMPLETE,function(e: egret.Event): void {
             if(mc != null && mc.parent != null)
             {
+                mc.stop();
                 mc.parent.removeChild(mc);
+                mc = null;
             }
         },this);
     }
@@ -91,11 +93,13 @@ class GemView extends egret.Sprite{
 	
 	private click():void
 	{
+    	  console.log("点击宝石索引："+this.vo.index);
 	    FightLogic.getInstance().setSelectGem(this.vo.index);
 	}
 	
-	private clear():void
+	public clear():void
 	{
+    	  this.bg = null;
         this.removeEventListener(egret.TouchEvent.TOUCH_TAP,this.click,this);
 	}
 }

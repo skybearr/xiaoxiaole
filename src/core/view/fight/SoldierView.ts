@@ -7,6 +7,7 @@ class SoldierView extends egret.Sprite{
     
     private skill:egret.MovieClip;
     private soldier:egret.MovieClip;
+    private fly: egret.MovieClip;
     
     public width_set:number = 100;
     public height_set:number = 90;
@@ -15,6 +16,18 @@ class SoldierView extends egret.Sprite{
     	super();
     	this.init();
     	this.once(egret.Event.REMOVED_FROM_STAGE,this.clear,this);
+	}
+	
+    
+	public changeFly():void
+	{
+        this.removeChildren();
+        this.soldier.stop();
+        
+        this.fly = FightLogic.getInstance().getMovieClip("fly");
+        this.fly.frameRate = 12;
+        this.fly.play(-1);
+        this.addChild(this.fly);
 	}
 	
 	private init():void
@@ -38,7 +51,13 @@ class SoldierView extends egret.Sprite{
 	{
     	this.removeChildren();
 	    this.soldier.stop();
-//	    this.skill.stop();
+	    if(this.skill != null){
+	        this.skill.stop();
+	    }
+	    if(this.fly != null){
+	        this.fly.stop();
+	    }
+	    this.fly = null;
 	    this.skill = null;
 	    this.soldier = null;
 	}
