@@ -17,18 +17,20 @@ class DataManager extends egret.EventDispatcher {
     }
     
     private enemy_arr:Object[];
+    private wall_arr:Object[];
     
     public initJsonData():void
     {
         RES.getResByUrl("Definfos_json",this.DefinfosCompelte,this,RES.ResourceItem.TYPE_JSON);
+        RES.getResByUrl("WallData_json",this.WallDataCompelte,this,RES.ResourceItem.TYPE_JSON);
     }
     
     public getEnemyVOByID(id:number):EnemyVO
     {
         var vo:EnemyVO = new EnemyVO();
-        var i:number = Math.floor(Math.random() * this.enemy_arr.length);
+        var i:number = Math.floor(Math.random() * this.enemy_arr.length);//临时随机，待服务器发正确id
         var o:Object = this.enemy_arr[i];
-        vo.id = i+"";
+        vo.id = o['id'];
         vo.lv = parseInt(o['lv']);
         vo.name = o['name'];
         vo.hp = vo.energy = parseInt(o['energy']);
@@ -39,8 +41,18 @@ class DataManager extends egret.EventDispatcher {
         vo.exp = parseInt(o['exp']);
         vo.speed = parseInt(o['speed']);
         vo.attack = parseInt(o['attack']);
-        vo.dis_step = parseInt(o['dropjb']);
-        vo.position = id%6;
+        return vo;
+    }
+    
+    public getWallVOByLevel(lv:number):WallVO
+    {
+        var vo:WallVO = new WallVO();
+        var o:Object = this.wall_arr[lv-1];
+        vo.id = lv - 1;
+        vo.lv = lv;
+        vo.gold = o['gold'];
+        vo.name = o['name'];
+        vo.max_hp = o['hp'];
         return vo;
     }
     
@@ -48,8 +60,9 @@ class DataManager extends egret.EventDispatcher {
     {
         switch(src){
             case "Definfos_json":
-                this.enemy_arr;
-            break;
+                return this.enemy_arr;
+            case "WallData_json":
+                return this.wall_arr;
         }
         return null;
     }
@@ -57,5 +70,10 @@ class DataManager extends egret.EventDispatcher {
     private DefinfosCompelte(e:any):void
     {
         this.enemy_arr = e;
+    }
+    
+    private WallDataCompelte(e:any)
+    {
+        this.wall_arr = e;
     }
 }

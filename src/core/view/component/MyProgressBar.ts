@@ -56,6 +56,7 @@ class MyProgressBar extends eui.Component{
      * @param tween 是否需要动画
      * @param lv_up 是否升级*/
     public setProgress(current,total,tween:boolean=false,lv_up:boolean=false): void {
+        current = current < 0 ? 0 : current;
         if(tween)
         {
             this.target_value = current;

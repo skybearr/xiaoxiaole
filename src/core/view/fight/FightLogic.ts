@@ -24,6 +24,7 @@ class FightLogic extends egret.EventDispatcher{
     public static GEM_OPERATOR_MOVE: number = 2;
     /**宝石操作类型--点击了一个不相邻的宝石*/
     public static GEM_OPERATOR_NEW_CLICK: number = 3;
+    
     /**战士排列类型--横向*/
     public static SOLDIER_LIST_TYPE_HORIZONTAL:number = 0;
     /**战士排列类型--纵向*/
@@ -31,9 +32,26 @@ class FightLogic extends egret.EventDispatcher{
     /**战士排列类型--方块大战士*/
     public static SOLDIER_LIST_TYPE_BIG: number = 2;
     
+//    /**敌人状态：正常移动*/
+//    public static ENEMY_STATE_WALK: number = 0;
+//    /**敌人状态：冰封*/
+//    public static ENEMY_STATE_FREEZE: number = 1;
+//    /**敌人状态：中debuff持续伤害*/
+//    public static ENEMY_STATE_DOT: number = 2;
+//    /**敌人状态：前方有障碍*/
+//    public static ENEMY_STATE_BARRIER: number = 3;
+//    /**敌人状态：已死亡，移除*/
+//    public static ENEMY_STATE_DEAD: number = 99;
+
+    /**敌人类型：战士/骑士 */
+    public static ENEMY_TYPE_WARRIOR: number = 0;
+    /**敌人类型：法师*/
+    public static ENEMY_TYPE_MAGICIAN: number = 1;
+    /**敌人类型：boss/hero*/
+    public static ENEMY_TYPE_BOSS: number = 2;
+    /**敌人类型：牧师*/
+    public static ENEMY_TYPE_TREATER: number = 3;
     
-    /**怪物移动的最小距离*/
-    public step_height:number = 15;
     /**当前选中的宝石 -1表示没有点击*/
     private current_select_gem:number = -1;
     /**宝石交换中*/
@@ -48,25 +66,43 @@ class FightLogic extends egret.EventDispatcher{
     public attack_combo_num:number = 0;
     /**一个永远不会重复的ID，仅供soloderVO生成时使用*/
     public soldier_max_id: number = 1;
+    /**敌人移动的最小距离*/
+    public step_height: number = 15;
+    /**敌人从出现到到达城墙需要的距离，步*/
+    public total_step: number = 20;
     
-    /**敌人数组*/
-    public enemy_arr:EnemyVO[];
-    
-    /**敌人行动*/
-    public enemyAction():void
-    {
-        
+    /**生成一排敌人*/
+    public birthOneRowEnemys(): EnemyVO[] {
+        var arr:EnemyVO[] = [];
+        for(var i: number = 0;i < 6;i++) {
+            var b: boolean = (Math.random() * 100) < 30;
+            if(b) {
+                var vo: EnemyVO = DataManager.getInstance().getEnemyVOByID(i);
+                vo.position = i;
+                if(vo.type == 1 || vo.type == 3)
+                {
+                    vo.attack_range = 8;
+                }
+                else
+                {
+                    vo.attack_range = 1;
+                }
+                
+                arr.push(vo);
+            }
+        }
+        return arr;
     }
     
-    /**初始化敌人*/
-    public getEnemys():EnemyVO[]
+    public getWalls():WallVO[]
     {
-        this.enemy_arr = [];
-        for(var i: number = 0;i < 50;i++){
-            var vo:EnemyVO = DataManager.getInstance().getEnemyVOByID(i);
-            this.enemy_arr.push(vo);
+        var arr:WallVO[] = [];
+        for(var i: number = 0;i < 6;i++) {
+            var lv:number = Math.floor(Math.random() * 20 + 1);
+            var vo: WallVO = DataManager.getInstance().getWallVOByLevel(lv);
+            arr.push(vo);
         }
-        return this.enemy_arr;
+        return arr;
     }
     
     
@@ -514,11 +550,11 @@ class FightLogic extends egret.EventDispatcher{
     {
         this.gem_arr = this.getRandomGems(30);
         
-        this.gem_arr = [3,2,2,2,2,1,
-                        3,3,1,1,1,3,
-                        2,3,2,4,1,4,
-                        2,2,2,1,4,1,
-                        2,3,2,1,1,1];
+        this.gem_arr = [3,2,5,2,3,1,
+                        3,3,1,5,1,3,
+                        2,0,5,4,1,4,
+                        5,2,2,1,4,1,
+                        1,3,2,5,1,1];
         for(var i: number = 0;i < 5;i++) {
             console.log(this.gem_arr[i * 6] + "," + this.gem_arr[i * 6 + 1] + "," + this.gem_arr[i * 6 + 2] + "," +
                 this.gem_arr[i * 6 + 3] + "," + this.gem_arr[i * 6 + 4] + "," + this.gem_arr[i * 6 + 5]);

@@ -10,7 +10,11 @@ declare class ExpBarSkin extends eui.Skin{
 }
 declare class FightBgSkin extends eui.Skin{
 }
+declare class FightLostSkin extends eui.Skin{
+}
 declare class FightPauseSkin extends eui.Skin{
+}
+declare class FightWinSkin extends eui.Skin{
 }
 declare class LoadingSkin extends eui.Skin{
 }

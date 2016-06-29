@@ -12,4 +12,5 @@ class WallVO {
 	public gold:number = 1;
 	public name:string = "城墙";
 	public max_hp:number = 1000;
+	public hp:number = 1000;
 }

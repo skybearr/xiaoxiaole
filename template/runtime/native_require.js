@@ -35,6 +35,7 @@ var game_file_list = [
 	"bin-debug/core/view/fight/FightLogic.js",
 	"bin-debug/core/view/fight/FightMainUI.js",
 	"bin-debug/core/view/fight/FightPauseUI.js",
+	"bin-debug/core/view/fight/FightResult.js",
 	"bin-debug/core/view/fight/GemView.js",
 	"bin-debug/core/view/fight/SoldierListView.js",
 	"bin-debug/core/view/fight/SoldierView.js",
