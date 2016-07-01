@@ -41,6 +41,7 @@ class EnemyVO {
 	public position:number;
 	/**自身状态 0正常，可以走   99已死亡，移除*/
 	public state:number = 0;
+    public dot_damage:number = 0;
 	public has_dot:boolean;
 	public has_freeze:boolean;
 	public is_dead:boolean;

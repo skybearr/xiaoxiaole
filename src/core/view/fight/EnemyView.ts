@@ -90,7 +90,7 @@ class EnemyView extends eui.Group {
         this.vo.extra_value--;
         if(this.vo.extra_value == 0) {
             this.vo.has_freeze = false;
-            if(this.freeze_bg != null && this.walk_bg.parent != null) {
+            if(this.freeze_bg != null && this.freeze_bg.parent != null) {
                 this.freeze_bg.parent.removeChild(this.freeze_bg);
                 this.freeze_bg = null;
             }
@@ -98,11 +98,10 @@ class EnemyView extends eui.Group {
     }
 
     /**中了dot，扣血
-     * @param damage 伤害值--减少的hp
      * @return 返回是否已经死亡*/
-    public dotRound(damage: number): boolean {
+    public dotRound(): boolean {
         //先扣血
-        this.setHp(this.vo.hp - damage);
+        this.setHp(this.vo.hp - this.vo.dot_damage);
 
         //扣完血如果死了，移除
         if(this.vo.hp <= 0) {
@@ -119,6 +118,37 @@ class EnemyView extends eui.Group {
             }
         }
         return false;
+    }
+    
+    /**中了冰封*/
+    public freeze(n: number): void {
+        this.vo.has_freeze = true;
+        this.vo.extra_value = n;
+        if(this.freeze_bg != null && this.freeze_bg.parent != null) {
+            this.freeze_bg.parent.removeChild(this.freeze_bg);
+        }
+        if(this.freeze_bg == null) {
+            this.freeze_bg = new egret.Bitmap(RES.getRes("beattack_frozen"));
+            this.freeze_bg.x = (this.width_set - this.freeze_bg.texture.textureWidth) / 2;
+            this.freeze_bg.y = this.bar.height;
+        }
+        this.addChild(this.freeze_bg);
+    }
+    
+    /**中了dot*/
+    public dot(n: number,dotdamage:number): void {
+        this.vo.dot_damage = dotdamage;
+        this.vo.has_dot = true;
+        this.vo.extra_value = n;
+        if(this.dot_bg != null && this.dot_bg.parent != null) {
+            this.dot_bg.parent.removeChild(this.dot_bg);
+        }
+        if(this.dot_bg == null) {
+            this.dot_bg = new egret.Bitmap(RES.getRes("beattack_skull0"));
+            this.dot_bg.x = (this.width_set - this.dot_bg.texture.textureWidth) / 2;
+            this.dot_bg.y = this.bar.height;
+        }
+        this.addChild(this.dot_bg);
     }
 
     public wait(): void {
@@ -148,6 +178,17 @@ class EnemyView extends eui.Group {
     public setHp(n: number): void {
         this.vo.hp = n;
         this.bar.setProgress(n,this.vo.energy);
+    }
+    
+    /**受到伤害*/
+    public damage(n:number):void
+    {
+        this.vo.hp -= n;
+        if(this.vo.hp <= 0)
+        {
+            this.vo.hp = 0;
+        }
+        this.bar.setProgress(this.vo.hp,this.vo.energy);
     }
     
     public setPosition(i:number):void

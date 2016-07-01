@@ -31,6 +31,7 @@ class FightResult extends BaseSecondUI{
     private clickBack(): void {
         SoundManager.getInstance().playEffectSound();
         UIManager.getInstance().closeSecondUI();
+        FightLogic.getInstance().dispatchEvent(new MyUIEvent(MyUIEvent.FIGHT_CLOSEUI));
     }
 
     private clear(): void {
