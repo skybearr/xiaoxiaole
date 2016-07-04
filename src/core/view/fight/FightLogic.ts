@@ -124,9 +124,13 @@ class FightLogic extends egret.EventDispatcher {
     public birthOneRowEnemys(): EnemyVO[] {
         var arr: EnemyVO[] = [];
         for(var i: number = 0;i < 6;i++) {
-            var b: boolean = (Math.random() * 100) < 30;
+            var b: boolean = Math.random()  < 2;
             if(b) {
                 var vo: EnemyVO = DataManager.getInstance().getEnemyVOByID(i);
+                if(vo.name == "hero" || vo.name == "boss")
+                {
+                    continue;
+                }
                 vo.position = i;
                 if(vo.type == 1 || vo.type == 3) {
                     vo.attack_range = 8;
@@ -314,11 +318,20 @@ class FightLogic extends egret.EventDispatcher {
     /**战士攻击后，检测他下面的宝石是否由合成或者合成取消
      * @param arr 从这些坐标开始检测所有坐标及以下*/
     public checkAttackCombo(arr: number[]): void {
-        var soldiers: SoldierVO[] = [];
-        //如果原来下面就有战士了，先加入
-
+        var soldiers: SoldierVO[] = [];//这个数组只是用来连击的
+        
         //把这个索引以下所有坐标都加入
         var indexs: number[] = this.getBelowIndexs(arr);
+        
+        //如果原来下面就有战士了，先加入
+        for(var i: number = 0;i < this.soldier_arr.length;i++) {
+            if(this.checkInRange(indexs,this.soldier_arr[i].data))
+            {
+                soldiers.push(this.soldier_arr[i]);
+            }
+        }
+        
+        //新合成
         for(var i: number = 0;i < indexs.length;i++) {
             var vo: SoldierVO = this.checkCompose(i);
             if(vo != null) {
@@ -326,14 +339,23 @@ class FightLogic extends egret.EventDispatcher {
                 console.log(vo.data);
             }
         }
-        if(soldiers.length > 0) {
-            var e: MyUIEvent = new MyUIEvent(MyUIEvent.FIGHT_SOLDIER_COMBO);
-            e.data = soldiers;
-            this.dispatchEvent(e);
+        
+        var e: MyUIEvent = new MyUIEvent(MyUIEvent.FIGHT_SOLDIER_COMBO);
+        e.data = soldiers;
+        this.dispatchEvent(e);
+    }
+    
+    /**检测这个战士是否全部在这堆坐标中*/
+    private checkInRange(indexs:number[],data:number[]):boolean
+    {
+        var b:boolean = true;
+        for(var i:number=0;i<data.length;i++){
+            if(indexs.indexOf(data[i]) == -1){
+                b = false;
+                break;
+            }
         }
-        else {
-            this.attack_combo_num = 0;
-        }
+        return b;
     }
 
     /**获取这个数组索引及其以下所有坐标*/

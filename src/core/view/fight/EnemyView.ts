@@ -29,7 +29,7 @@ class EnemyView extends eui.Group {
         this.addChild(this.bar);
         this.wait();
         this.setHp(this.vo.energy);
-        this.bar.setText(this.vo.position);
+        this.bar.setText(this.vo.position+":"+this.vo.hp + "/" + this.vo.energy);
     }
     
     /**攻击*/
@@ -178,23 +178,28 @@ class EnemyView extends eui.Group {
     public setHp(n: number): void {
         this.vo.hp = n;
         this.bar.setProgress(n,this.vo.energy);
+        this.bar.setText(this.vo.position + ":" + this.vo.hp + "/" + this.vo.energy);
     }
     
     /**受到伤害*/
     public damage(n:number):void
     {
+        if(this.vo == null){
+            return;
+        }
         this.vo.hp -= n;
         if(this.vo.hp <= 0)
         {
             this.vo.hp = 0;
         }
         this.bar.setProgress(this.vo.hp,this.vo.energy);
+        this.bar.setText(this.vo.position + ":" + this.vo.hp + "/" + this.vo.energy);
     }
     
     public setPosition(i:number):void
     {
         this.vo.position = i;
-        this.bar.setText(i);
+        this.bar.setText(this.vo.position + ":" + this.vo.hp + "/" + this.vo.energy);
     }
 
     private clear(): void {
@@ -207,7 +212,7 @@ class EnemyView extends eui.Group {
             this.wait_bg.parent.removeChild(this.wait_bg);
             this.wait_bg = null;
         }
-        if(this.freeze_bg != null && this.walk_bg.parent != null) {
+        if(this.freeze_bg != null && this.freeze_bg.parent != null) {
             this.freeze_bg.parent.removeChild(this.freeze_bg);
             this.freeze_bg = null;
         }

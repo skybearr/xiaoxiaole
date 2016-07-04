@@ -14,14 +14,17 @@ class FightMainUI extends eui.Component {
     private wall_con: egret.Sprite;
     private enemy_con: egret.Sprite;
     private gem_con: egret.Sprite;
-
+    private danger_rect:eui.Rect;
     private last_gem: GemView;
     private target_gem: GemView;
-    private gem_move_time: number = 300;
+    private gem_move_time: number = 200;
     private soldier_move_time: number = 100;
     private enemy_start_y: number = -65;
     private enemy_end_y: number = 235;
     private max_enemy: number = 132;//正常6*20，最后12格为城墙破了以后走2步则算战斗失败
+    private is_danger:boolean;
+    private combo_soldier:SoldierVO[] = [];//前面战士攻击后，等待连击的战士
+    private solder_attacking:boolean;
 
     public constructor() {
         super();
@@ -119,11 +122,8 @@ class FightMainUI extends eui.Component {
                 {
                     if(enemy.dotRound())//如果扣血以后死亡，移除这个敌人
                     {
-                        this.enemy_arr[i] = null;
-                        if(enemy.parent != null) {
-                            enemy.parent.removeChild(enemy);
-                            enemy = null;
-                        }
+                        this.removeEnemy(enemy.vo.position);
+                        enemy = null;
                         continue;
                     }
                     else//扣完血没死，移动
@@ -138,19 +138,18 @@ class FightMainUI extends eui.Component {
                     enemy.freezeRound();
                 }
                 else if(enemy.vo.is_dead) {
-                    this.enemy_arr[i] = null;
-                    if(enemy.parent != null) {
-                        enemy.parent.removeChild(enemy);
-                        enemy = null;
-                    }
+                    this.removeEnemy(enemy.vo.position);
+                    enemy = null;
                 }
                 else {
                     this.enemyAction(i);
                 }
-
             }
         }
         this.addEnemyOnFirstRow();
+        setTimeout(()=>{
+            this.checkDangerous();
+            },500);
     }
 
     /**单个敌人行动：移动或者攻击*/
@@ -192,6 +191,55 @@ class FightMainUI extends eui.Component {
             this.damageWall(i % 6,this.enemy_arr[i].vo.attack);
         }
     }
+    
+    /**检测是否由危险：城墙破 敌人还有2步就到我方基地*/
+    private checkDangerous():void
+    {
+        for(var i: number = 0;i < 6;i++) {
+            if(!this.is_danger && this.checkWallDestory(i) && this.getStepBetweenWallAndEnemy(i) < 3) {
+                this.is_danger = true;
+                if(this.danger_rect == null) {
+                    this.danger_rect = new eui.Rect(GlobalData.GameStage_width,640,0xff0000);
+                    this.danger_rect.horizontalCenter = 0;
+                    this.danger_rect.bottom = 0;
+                }
+                this.danger_rect.touchChildren = this.danger_rect.touchEnabled = false;
+                this.addChild(this.danger_rect);
+                this.danger_rect.alpha = 0;
+                egret.Tween.get(this.danger_rect,{ loop: true }).to({ alpha: 0.3 },200).to({ alpha: 0 },200);
+                return;
+            }
+        }
+        //危险解除
+        if(!this.is_danger && this.danger_rect != null)
+        {
+            if(this.danger_rect.parent != null) {
+                this.danger_rect.parent.removeChild(this.danger_rect);
+            }
+            egret.Tween.removeTweens(this.danger_rect);
+            this.danger_rect = null;
+            this.is_danger = false;
+        }
+    }
+    
+    /**这个城墙列的敌人距离城墙的最短距离*/
+    private getStepBetweenWallAndEnemy(i:number):number
+    {
+        var step: number = 99;
+        var pos:number = this.max_enemy - 12 + i;
+        var n:number = 1;
+        while(pos >= 0)
+        {
+            if(this.enemy_arr[pos] != null){
+                step = n;
+                break;
+            }
+            pos -= 6;
+            n++;
+        }
+        console.log("距离基地："+step);
+        return step;
+    }
 
     /**敌人移动*/
     private enemyMove(i: number,wallDestroy: boolean = false): void {
@@ -232,7 +280,7 @@ class FightMainUI extends eui.Component {
 
     /**判断敌人是否到达我放基地*/
     private checkEnemyBeatMe(i: number): boolean {
-        return i >= (FightLogic.getInstance().total_step + 1) * 6
+        return i >= (FightLogic.getInstance().total_step + 1) * 6;
     }
 
     /**判断城墙是否已破*/
@@ -265,16 +313,26 @@ class FightMainUI extends eui.Component {
 
     /**连击*/
     private soldierCombo(e: MyUIEvent): void {
-        var arr: SoldierVO[] = e.data;
-        this.soldierComposeReal(arr);
-
-        //合成以后等待上面攻击完成后调用，现模拟
-        setTimeout(this.soldierComboReal,2000,arr);
+        this.combo_soldier = e.data;
+        if(this.combo_soldier.length > 0) {
+            this.soldierComposeReal(this.combo_soldier);
+        }
+        console.log("接受连击数组:"+this.combo_soldier.length+"---:战士攻击结束了吗?" + this.solder_attacking);
+        //如果战士攻击已经结束，那么这里直接连击；如果攻击还没结束，等待前面战士攻击结束以后 触发连击
+        if(!this.solder_attacking && this.combo_soldier.length > 0){
+            this.soldierComboReal(this.combo_soldier);
+        }
+        else
+        {
+            FightLogic.getInstance().attack_combo_num = 0;
+        }
     }
+    
     private soldierComboReal(arr: SoldierVO[]): void {
         FightLogic.getInstance().attack_combo_num++;//一次检测只能算一次连击
         for(var i: number = 0;i < arr.length;i++) {
-            FightLogic.getInstance().soldierFight(arr[i]);
+            FightLogic.getInstance().soldierFight(arr[0]);//目前连击只做了一次连击一个
+            break;
         }
     }
 
@@ -360,10 +418,11 @@ class FightMainUI extends eui.Component {
     }
 
     private removeEnemy(i: number): void {
+        var self = this;
         var lagRemove = function():void{
-            if(this.enemy_arr[i] != null && this.enemy_arr[i].parent != null) {
-                this.enemy_arr[i].parent.removeChild(this.enemy_arr[i]);
-                this.enemy_arr[i] = null;
+            if(self.enemy_arr[i] != null && self.enemy_arr[i].parent != null) {
+                self.enemy_arr[i].parent.removeChild(self.enemy_arr[i]);
+                self.enemy_arr[i] = null;
             }
         }
         
@@ -390,8 +449,14 @@ class FightMainUI extends eui.Component {
         if(e.data == null) {
             console.log("soldierAttack错误");
         }
+       
         var soldier = this.getSoldier(e.data.id);
-
+        if(soldier == null)
+        {
+            return;
+        }
+        
+        this.solder_attacking = true;
         var arr: number[] = soldier.vo.data;
         if(soldier.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG) {//如果是大战士，只要计算2个
             arr = arr.slice(2);
@@ -472,7 +537,7 @@ class FightMainUI extends eui.Component {
                                         if(this.enemy_arr[index] != null) {
                                             this.enemy_arr[index].damage(i == 0 ? damage : damage / 2);//左右的位置造成一半伤害
                                         }
-                                        if(this.enemy_arr[index].vo.hp <= 0) {
+                                        if(this.enemy_arr[index] != null && this.enemy_arr[index].vo.hp <= 0) {
                                             this.removeEnemy(index);
                                         }
                                     }
@@ -501,7 +566,9 @@ class FightMainUI extends eui.Component {
                                             }
                                             else {
                                                 this.enemy_arr[first_enemy_position] = null;
+                                                first_enemy.setPosition(first_enemy_position - 6 * 5);
                                                 this.enemy_arr[first_enemy_position - 6 * 5] = first_enemy;
+                                                this.changeEnemyDisplayIndex(first_enemy_position - 6 * 5);
                                             }
                                         }
                                     },this);
@@ -589,16 +656,40 @@ class FightMainUI extends eui.Component {
             },onChangeObj: this
         });
 
-        tw.to({ y: 0 },1000).call(() => {
+        tw.to({ y: -100 },1000).call(() => {
             //战士攻击结束
+            this.solder_attacking = false;
             if(soldier != null && soldier.parent != null) {
                 this.removeSoldier(soldier.vo.id);
                 soldier.parent.removeChild(soldier);
                 FightLogic.getInstance().is_gem_move = false;
+                this.checkDangerous();//检测是否解除危险
+            }
+            if(this.combo_soldier.length > 0){
+                this.soldierComboReal(this.combo_soldier);
             }
         },this);
 
         FightLogic.getInstance().gemComplement(soldier.vo);//战士攻击以后，后面的宝石要跟随移动并补充
+    }
+    
+    /**敌人被击退后，改变其深度
+     * @param i 当前敌人的位置*/
+    private changeEnemyDisplayIndex(i:number):void
+    {
+        var pos:number = i + 6;
+        var up_index:number = -1;
+        while(pos < this.max_enemy)
+        {
+            if(this.enemy_arr[pos] != null){
+                up_index = this.enemy_con.getChildIndex(this.enemy_arr[pos]);
+                break;
+            }
+            pos += 6;
+        }
+        if(up_index != -1){
+            this.enemy_con.setChildIndex(this.enemy_arr[i],up_index);
+        }
     }
 
     /**获取该列的所有敌人的位置*/
@@ -643,13 +734,25 @@ class FightMainUI extends eui.Component {
         }
         for(var i: number = 0;i < arr.length;i++) {
             var vo: SoldierVO = arr[i];
-            var soldier: SoldierListView = new SoldierListView(vo);
-            soldier.x = this.gem_con.x + this.gem_arr[vo.data[0]].x;
-            soldier.y = this.gem_con.y + this.gem_arr[vo.data[0]].y;
-            this.addChild(soldier);
-            this.soldier_arr.push(soldier);
-            this.setGemDisappear(vo.data);
+            if(!this.hasThisSoldier(vo)) {//因为连击的时候这个数组有可能是原来就有的不是合成的
+                var soldier: SoldierListView = new SoldierListView(vo);
+                soldier.x = this.gem_con.x + this.gem_arr[vo.data[0]].x;
+                soldier.y = this.gem_con.y + this.gem_arr[vo.data[0]].y;
+                this.addChild(soldier);
+                this.soldier_arr.push(soldier);
+                this.setGemDisappear(vo.data);
+            }
         }
+    }
+    
+    /**因为连击的时候这个数组有可能是原来就有的不是合成的*/
+    private hasThisSoldier(vo:SoldierVO):boolean{
+        for(var i:number=0;i<this.soldier_arr.length;i++){
+            if(this.soldier_arr[i].vo.id == vo.id){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**合成战士以后原来位置的宝石暂时消失*/

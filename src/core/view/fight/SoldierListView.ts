@@ -75,7 +75,9 @@ class SoldierListView extends egret.Sprite {
     /**战士消失*/
     public soldierDiappear(i:number)
     {
-        this.soldier_arr[i].visible = this.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG;//小战士消失，大战士一直存在
+        if(this.soldier_arr[i] != null) {
+            this.soldier_arr[i].visible = this.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG;//小战士消失，大战士一直存在
+        }
     }
 
     private click(): void {

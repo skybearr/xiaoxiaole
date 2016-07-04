@@ -16,5 +16,5 @@ class RoleManager extends egret.EventDispatcher {
         return this.instance;
     }
     
-    public attack:number = 10;
+    public attack:number = 30;
 }
