@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -48,7 +48,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -760,7 +760,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -924,7 +924,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -1112,7 +1112,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -1812,7 +1812,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -1936,7 +1936,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -2111,7 +2111,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -2206,7 +2206,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -2294,6 +2294,8 @@ var egret;
                 var option = this.playerOption;
                 var screenWidth = egret_native.EGTView.getFrameWidth();
                 var screenHeight = egret_native.EGTView.getFrameHeight();
+                egret.Capabilities.$boundingClientWidth = screenWidth;
+                egret.Capabilities.$boundingClientHeight = screenHeight;
                 var stageSize = egret.sys.screenAdapter.calculateStageSize(this.$stage.$scaleMode, screenWidth, screenHeight, option.contentWidth, option.contentHeight);
                 var stageWidth = stageSize.stageWidth;
                 var stageHeight = stageSize.stageHeight;
@@ -2326,7 +2328,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -2418,7 +2420,7 @@ var egret;
                 egret.sys.RenderBuffer = native.NativeRenderTextureRenderBuffer;
             }
             egret.sys.systemRenderer = new egret.CanvasRenderer();
-            egret.Capabilities.renderMode = "canvas";
+            egret.Capabilities.$renderMode = "canvas";
         }
         function updateAllScreens() {
             var length = playerList.length;
@@ -2466,7 +2468,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -2496,6 +2498,9 @@ var egret;
 (function (egret) {
     var native;
     (function (native) {
+        /**
+         * @private
+         */
         var NativeFps = (function (_super) {
             __extends(NativeFps, _super);
             function NativeFps(stage, showFPS, showLog, logFilter, styles) {
@@ -2595,7 +2600,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -2637,7 +2642,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -2710,7 +2715,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -2817,7 +2822,7 @@ var egret;
                 startTime = +startTime || 0;
                 loops = +loops || 0;
                 if (DEBUG && this.loaded == false) {
-                    egret.$error(3001);
+                    egret.$error(1049);
                 }
                 var audio = NativeSound.$pop(this.url);
                 if (audio == null) {
@@ -2905,7 +2910,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -3050,7 +3055,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -3117,7 +3122,12 @@ var egret;
                     download();
                 }
                 else {
-                    onLoadComplete();
+                    if (__global.setTimeout) {
+                        __global.setTimeout(onLoadComplete, 0);
+                    }
+                    else {
+                        egret.$callAsync(onLoadComplete, self);
+                    }
                 }
                 function download() {
                     var promise = egret.PromiseObject.create();
@@ -3152,7 +3162,7 @@ var egret;
                 startTime = +startTime || 0;
                 loops = +loops || 0;
                 if (DEBUG && this.loaded == false) {
-                    egret.$error(3001);
+                    egret.$error(1049);
                 }
                 var channel = new native.NaSoundChannel();
                 channel.$url = this.url;
@@ -3205,7 +3215,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -3333,7 +3343,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -3373,7 +3383,8 @@ var egret;
              * @private
              * @inheritDoc
              */
-            function NativeVideo(url) {
+            function NativeVideo(url, cache) {
+                if (cache === void 0) { cache = true; }
                 _super.call(this);
                 /**
                  * @private
@@ -3418,21 +3429,20 @@ var egret;
                  */
                 this.widthSet = 0;
                 this.$renderNode = new egret.sys.BitmapNode();
+                this.cache = cache;
                 if (!__global.Video) {
                     egret.$error(1044);
                 }
-                this.src = url;
                 if (url) {
-                    this.load();
+                    this.load(url, cache);
                 }
             }
             var d = __define,c=NativeVideo,p=c.prototype;
             /**
              * @inheritDoc
              */
-            p.load = function (url) {
-                url = url || this.src;
-                this.src = url;
+            p.load = function (url, cache) {
+                if (cache === void 0) { cache = true; }
                 if (DEBUG && !url) {
                     egret.$error(3002);
                     return;
@@ -3440,9 +3450,33 @@ var egret;
                 if (this.loading) {
                     return;
                 }
+                if (url.indexOf('/') == 0) {
+                    url = url.slice(1, url.length);
+                }
+                this.src = url;
                 this.loading = true;
                 this.loaded = false;
-                var video = new __global.Video(url);
+                if (cache && !egret_native.isFileExists(url)) {
+                    var self = this;
+                    var promise = egret.PromiseObject.create();
+                    promise.onSuccessFunc = function () {
+                        self.loadEnd();
+                    };
+                    promise.onErrorFunc = function () {
+                        egret.$warn(1048);
+                        self.dispatchEventWith(egret.IOErrorEvent.IO_ERROR);
+                    };
+                    egret_native.download(url, url, promise);
+                }
+                else {
+                    this.loadEnd();
+                }
+            };
+            /**
+             * @private
+             * */
+            p.loadEnd = function () {
+                var video = new __global.Video(this.src);
                 video['setVideoRect'](0, 0, 1, 1);
                 video['setKeepRatio'](false);
                 video.addEventListener("canplaythrough", onCanPlay);
@@ -3456,28 +3490,30 @@ var egret;
                 }
                 function onPlaying() {
                     video['setVideoRect'](0, 0, 1, 1);
-                    video.pause();
-                    if (self._fullscreen) {
-                        video.fullScreen = true;
-                    }
-                    video.currentTime = 0;
-                    self.originVideo = video;
-                    self.loaded = true;
-                    self.loading = false;
-                    removeListeners();
-                    self.dispatchEventWith(egret.Event.COMPLETE);
-                    video.addEventListener('pause', function () {
-                        self.paused = true;
-                    });
-                    video.addEventListener('playing', function () {
-                        self.paused = false;
-                    });
-                    video.addEventListener('ended', function () {
-                        self.dispatchEventWith(egret.Event.ENDED);
-                        if (self.loop) {
-                            self.play(0, true);
+                    __global.setTimeout(function () {
+                        video.pause();
+                        if (self._fullscreen) {
+                            video.fullScreen = true;
                         }
-                    });
+                        video.currentTime = 0;
+                        self.originVideo = video;
+                        self.loaded = true;
+                        self.loading = false;
+                        removeListeners();
+                        self.dispatchEventWith(egret.Event.COMPLETE);
+                        video.addEventListener('pause', function () {
+                            self.paused = true;
+                        });
+                        video.addEventListener('playing', function () {
+                            self.paused = false;
+                        });
+                        video.addEventListener('ended', function () {
+                            self.dispatchEventWith(egret.Event.ENDED);
+                            if (self.loop) {
+                                self.play(0, true);
+                            }
+                        });
+                    }, 1);
                 }
                 function onVideoError() {
                     removeListeners();
@@ -3497,12 +3533,12 @@ var egret;
                 if (loop === void 0) { loop = false; }
                 this.loop = loop;
                 if (!this.loaded) {
-                    this.load();
+                    this.load(this.src);
                     this.once(egret.Event.COMPLETE, function (e) { return _this.play(startTime, loop); }, this);
                     return;
                 }
                 var haveStartTime = false;
-                if (startTime != undefined) {
+                if (startTime != undefined && startTime != this.originVideo.currentTime) {
                     this.originVideo.currentTime = startTime || 0;
                     haveStartTime = true;
                 }
@@ -3804,7 +3840,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -3912,7 +3948,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -3971,7 +4007,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -4097,7 +4133,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided this the following conditions are met:
@@ -4172,7 +4208,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -4408,7 +4444,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -4533,7 +4569,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -4686,13 +4722,15 @@ var egret;
                 }
                 var returnType = 1;
                 var maxLength = values[21 /* maxChars */] <= 0 ? -1 : values[21 /* maxChars */];
+                var node = textfield.$getRenderNode();
+                var matrix = node.renderMatrix;
                 egret_native.TextInputOp.setKeybordOpen(true, JSON.stringify({
                     "inputMode": inputMode,
                     "inputFlag": inputFlag,
                     "returnType": returnType,
                     "maxLength": maxLength,
-                    "x": textfield.x,
-                    "y": textfield.y,
+                    "x": matrix.tx,
+                    "y": matrix.ty,
                     "width": textfield.width,
                     "height": textfield.height,
                     "font_size": values[0 /* fontSize */],
@@ -4704,8 +4742,8 @@ var egret;
              *
              */
             p.$hide = function () {
-                this.dispatchEvent(new egret.Event("blur"));
                 egret_native.TextInputOp.setKeybordOpen(false);
+                this.dispatchEvent(new egret.Event("blur"));
             };
             p.$resetStageText = function () {
             };
@@ -4726,7 +4764,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -4873,7 +4911,7 @@ var egret;
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:

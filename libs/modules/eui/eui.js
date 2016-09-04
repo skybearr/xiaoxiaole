@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -128,7 +128,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -500,7 +500,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -627,7 +627,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -703,7 +703,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -1081,7 +1081,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -1109,7 +1109,7 @@ var eui;
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -1647,7 +1647,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -2718,7 +2718,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -3069,7 +3069,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -3885,7 +3885,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -4177,7 +4177,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -4347,7 +4347,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -4426,7 +4426,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -4707,7 +4707,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -5375,7 +5375,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -5651,6 +5651,7 @@ var eui;
             if (freeRenderers[hashCode] && freeRenderers[hashCode].length > 0) {
                 renderer = freeRenderers[hashCode].pop();
                 renderer.visible = true;
+                this.invalidateDisplayList();
                 return renderer;
             }
             values[4 /* createNewRendererFlag */] = true;
@@ -5781,7 +5782,7 @@ var eui;
                         var indexToRenderer = this.$indexToRenderer;
                         var keys = Object.keys(indexToRenderer);
                         var length = keys.length;
-                        for (var i = 0; i < length; i++) {
+                        for (var i = length - 1; i >= 0; i--) {
                             var index = +keys[i];
                             this.freeRendererByIndex(index);
                         }
@@ -6899,7 +6900,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -7106,7 +7107,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -7226,7 +7227,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -7716,7 +7717,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -8265,7 +8266,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -8398,7 +8399,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -8519,7 +8520,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -9005,7 +9006,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -9271,7 +9272,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -9370,6 +9371,10 @@ var eui;
              * @private
              */
             this._widthConstraint = NaN;
+            /**
+             * @private
+             */
+            this.availableWidth = NaN;
             this.initializeUIValues();
             this.text = text;
         }
@@ -9450,18 +9455,17 @@ var eui;
             var values = this.$UIComponent;
             var textValues = this.$TextField;
             var oldWidth = textValues[3 /* textFieldWidth */];
-            var availableWidth = NaN;
             if (!isNaN(this._widthConstraint)) {
-                availableWidth = this._widthConstraint;
+                this.availableWidth = this._widthConstraint;
                 this._widthConstraint = NaN;
             }
             else if (!isNaN(values[8 /* explicitWidth */])) {
-                availableWidth = values[8 /* explicitWidth */];
+                this.availableWidth = values[8 /* explicitWidth */];
             }
             else if (values[13 /* maxWidth */] != 100000) {
-                availableWidth = values[13 /* maxWidth */];
+                this.availableWidth = values[13 /* maxWidth */];
             }
-            _super.prototype.$setWidth.call(this, availableWidth);
+            _super.prototype.$setWidth.call(this, this.availableWidth);
             this.setMeasuredSize(this.textWidth, this.textHeight);
             _super.prototype.$setWidth.call(this, oldWidth);
         };
@@ -9615,7 +9619,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -10438,7 +10442,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -10873,7 +10877,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -11238,7 +11242,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -11367,6 +11371,14 @@ var eui;
              * @private
              */
             this.animationValue = 0;
+            /**
+             * @private
+             */
+            this.thumbInitX = 0;
+            /**
+             * @private
+             */
+            this.thumbInitY = 0;
             this.animation = new eui.sys.Animation(this.animationUpdateHandler, this);
         }
         var d = __define,c=ProgressBar,p=c.prototype;
@@ -11495,6 +11507,10 @@ var eui;
             ,function (value) {
                 if (this._direction == value)
                     return;
+                if (this.thumb)
+                    this.thumb.x = this.thumbInitX;
+                if (this.thumb)
+                    this.thumb.y = this.thumbInitY;
                 this._direction = value;
                 this.invalidateDisplayList();
             }
@@ -11552,6 +11568,10 @@ var eui;
         p.partAdded = function (partName, instance) {
             _super.prototype.partAdded.call(this, partName, instance);
             if (instance === this.thumb) {
+                if (this.thumb.x)
+                    this.thumbInitX = this.thumb.x;
+                if (this.thumb.y)
+                    this.thumbInitY = this.thumb.y;
                 this.thumb.addEventListener(egret.Event.RESIZE, this.onThumbResize, this);
             }
         };
@@ -11605,43 +11625,21 @@ var eui;
                 switch (this._direction) {
                     case eui.Direction.LTR:
                         rect.width = clipWidth;
-                        if (!thumb.left && !thumb.right) {
-                            thumb.x = rect.x;
-                        }
-                        else {
-                            thumb.x = thumbPosX;
-                        }
+                        thumb.x = thumbPosX;
                         break;
                     case eui.Direction.RTL:
                         rect.width = clipWidth;
                         rect.x = thumbWidth - clipWidth;
                         thumb.x = rect.x;
-                        if (thumb.left) {
-                            thumb.x += thumb.left;
-                        }
-                        else if (thumb.right) {
-                            thumb.x -= thumb.right;
-                        }
                         break;
                     case eui.Direction.TTB:
                         rect.height = clipHeight;
-                        if (!thumb.top && !thumb.bottom) {
-                            thumb.y = rect.y;
-                        }
-                        else {
-                            thumb.y = thumbPosY;
-                        }
+                        thumb.y = thumbPosY;
                         break;
                     case eui.Direction.BTT:
                         rect.height = clipHeight;
                         rect.y = thumbHeight - clipHeight;
                         thumb.y = rect.y;
-                        if (thumb.top) {
-                            thumb.y += thumb.top;
-                        }
-                        else if (thumb.bottom) {
-                            thumb.y -= thumb.bottom;
-                        }
                         break;
                 }
                 thumb.scrollRect = rect;
@@ -11657,7 +11655,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -11981,7 +11979,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -12420,7 +12418,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -12708,7 +12706,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -13197,7 +13195,7 @@ var eui;
             var uiValues = viewport.$UIComponent;
             switch (values[1 /* scrollPolicyH */]) {
                 case "auto":
-                    if (viewport.contentWidth > uiValues[10 /* width */]) {
+                    if (viewport.contentWidth > uiValues[10 /* width */] || viewport.scrollH !== 0) {
                         hCanScroll = true;
                     }
                     else {
@@ -13215,7 +13213,7 @@ var eui;
             var vCanScroll;
             switch (values[0 /* scrollPolicyV */]) {
                 case "auto":
-                    if (viewport.contentHeight > uiValues[11 /* height */]) {
+                    if (viewport.contentHeight > uiValues[11 /* height */] || viewport.scrollV !== 0) {
                         vCanScroll = true;
                     }
                     else {
@@ -13287,10 +13285,10 @@ var eui;
                 if (!outX && !outY) {
                     return;
                 }
-                if (outX && values[1 /* scrollPolicyH */] == 'off') {
+                if (!outY && outX && values[1 /* scrollPolicyH */] == 'off') {
                     return;
                 }
-                if (outY && values[0 /* scrollPolicyV */] == 'off') {
+                if (!outX && outY && values[0 /* scrollPolicyV */] == 'off') {
                     return;
                 }
                 values[12 /* touchCancle */] = true;
@@ -13524,7 +13522,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -13810,7 +13808,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -14378,7 +14376,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -14453,7 +14451,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -14553,7 +14551,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -14673,7 +14671,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -14807,7 +14805,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -15150,7 +15148,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -15304,7 +15302,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -15379,7 +15377,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -15683,7 +15681,7 @@ var eui;
                 if (hsp < 0) {
                     hspTo = 0;
                 }
-                if (hsp > maxHsp) {
+                if (maxHsp && hsp > maxHsp) {
                     hspTo = maxHsp;
                 }
                 this.throwTo(hspTo, 300);
@@ -15721,7 +15719,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -15837,7 +15835,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -15865,7 +15863,7 @@ var eui;
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -15893,7 +15891,7 @@ var eui;
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -15921,7 +15919,7 @@ var eui;
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -15949,7 +15947,7 @@ var eui;
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -15977,7 +15975,7 @@ var eui;
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -16081,7 +16079,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -16192,13 +16190,16 @@ var eui;
          */
         p.onConfigLoaded = function (str) {
             if (str) {
-                try {
-                    var data = JSON.parse(str);
-                }
-                catch (e) {
-                    if (DEBUG) {
+                if (DEBUG) {
+                    try {
+                        var data = JSON.parse(str);
+                    }
+                    catch (e) {
                         egret.$error(3000);
                     }
+                }
+                else {
+                    var data = JSON.parse(str);
                 }
             }
             else if (DEBUG) {
@@ -16217,6 +16218,10 @@ var eui;
                 }
             }
             if (!data.exmls || data.exmls.length == 0) {
+                this.onLoaded();
+            }
+            else if (data.exmls[0]['gjs']) {
+                data.exmls.forEach(function (exml) { return EXML.$parseURLContentAsJs(exml.path, exml.gjs, exml.className); });
                 this.onLoaded();
             }
             else if (data.exmls[0]['content']) {
@@ -16343,7 +16348,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -16557,7 +16562,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -16710,7 +16715,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -16875,7 +16880,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -17040,7 +17045,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -17235,7 +17240,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -17882,7 +17887,7 @@ var eui;
              */
             p.toCode = function () {
                 var chain = this.expression.split(".").join("\",\"");
-                return BINDING_PROPERTY + "(this, [\"" + chain + "\"], this." + this.target + ",\"" + this.property + "\")";
+                return BINDING_PROPERTY + "(this, [\"" + chain + "\"]," + this.target + ",\"" + this.property + "\")";
             };
             return EXBinding;
         }(CodeBase));
@@ -17892,7 +17897,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -17960,9 +17965,43 @@ var eui;
             var d = __define,c=EXMLParser,p=c.prototype;
             /**
              * @private
+             * 将已有javascript代码注册
+             * @param codeText 执行的javascript代码
+             * @param classStr 类名
+             */
+            p.$parseCode = function (codeText, classStr) {
+                //传入的是编译后的js字符串
+                var className = classStr ? classStr : "$exmlClass" + innerClassCount++;
+                var clazz = eval(codeText);
+                var hasClass = true;
+                if (hasClass && clazz) {
+                    egret.registerClass(clazz, className);
+                    var paths = className.split(".");
+                    var length = paths.length;
+                    var definition = __global;
+                    for (var i = 0; i < length - 1; i++) {
+                        var path = paths[i];
+                        definition = definition[path] || (definition[path] = {});
+                    }
+                    if (definition[paths[length - 1]]) {
+                        if (DEBUG && !parsedClasses[className]) {
+                            egret.$warn(2101, className, codeText);
+                        }
+                    }
+                    else {
+                        if (DEBUG) {
+                            parsedClasses[className] = true;
+                        }
+                        definition[paths[length - 1]] = clazz;
+                    }
+                }
+                return clazz;
+            };
+            /**
+             * @private
              * 编译指定的XML对象为JavaScript代码。
              * @param xmlData 要编译的EXML文件内容
-             * @param className 要编译成的完整类名，包括模块名。
+             *
              */
             p.parse = function (text) {
                 if (DEBUG) {
@@ -17970,16 +18009,19 @@ var eui;
                         egret.$error(1003, "text");
                     }
                 }
-                try {
-                    var xmlData = egret.XML.parse(text);
-                }
-                catch (e) {
-                    if (DEBUG) {
+                if (DEBUG) {
+                    try {
+                        var xmlData = egret.XML.parse(text);
+                    }
+                    catch (e) {
                         egret.$error(2002, text + "\n" + e.message);
                     }
                 }
-                var className = "";
+                else {
+                    var xmlData = egret.XML.parse(text);
+                }
                 var hasClass = false;
+                var className = "";
                 if (xmlData.attributes["class"]) {
                     className = xmlData.attributes["class"];
                     delete xmlData.attributes["class"];
@@ -17990,14 +18032,17 @@ var eui;
                 }
                 var exClass = this.parseClass(xmlData, className);
                 var code = exClass.toCode();
-                try {
-                    var clazz = eval(code);
-                }
-                catch (e) {
-                    if (DEBUG) {
-                        egret.log(code);
+                if (DEBUG) {
+                    try {
+                        var clazz = eval(code);
                     }
-                    return null;
+                    catch (e) {
+                        egret.log(code);
+                        return null;
+                    }
+                }
+                else {
+                    var clazz = eval(code);
                 }
                 if (hasClass && clazz) {
                     egret.registerClass(clazz, className);
@@ -18628,7 +18673,12 @@ var eui;
                         value = HOST_COMPONENT + "." + value;
                     }
                     if (!haveState) {
-                        this.bindings.push(new sys.EXBinding(node.attributes["id"], key, value));
+                        if (node != this.currentXML) {
+                            this.bindings.push(new sys.EXBinding("this." + node.attributes["id"], key, value));
+                        }
+                        else {
+                            this.bindings.push(new sys.EXBinding("this", key, value));
+                        }
                         value = "";
                     }
                     else {
@@ -19285,7 +19335,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -19514,12 +19564,17 @@ var eui;
             if (!clazz) {
                 return null;
             }
-            try {
-                var instance = new clazz();
+            if (DEBUG) {
+                try {
+                    var instance = new clazz();
+                }
+                catch (e) {
+                    egret.error(e);
+                    return null;
+                }
             }
-            catch (e) {
-                egret.error(e);
-                return null;
+            else {
+                var instance = new clazz();
             }
             return instance;
         }
@@ -19527,7 +19582,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -19692,6 +19747,29 @@ var EXML;
     }
     /**
      * @private
+     * @param url
+     * @param text
+     */
+    function $parseURLContentAsJs(url, text, className) {
+        if (text) {
+            var clazz = parser.$parseCode(text, className);
+        }
+        if (url) {
+            parsedClasses[url] = clazz;
+            var list = callBackMap[url];
+            delete callBackMap[url];
+            var length = list ? list.length : 0;
+            for (var i = 0; i < length; i++) {
+                var arr = list[i];
+                if (arr[0] && arr[1])
+                    arr[0].call(arr[1], clazz, url);
+            }
+        }
+        return clazz;
+    }
+    EXML.$parseURLContentAsJs = $parseURLContentAsJs;
+    /**
+     * @private
      */
     function $parseURLContent(url, text) {
         if (text) {
@@ -19734,7 +19812,7 @@ var EXML;
 })(EXML || (EXML = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015; Egret Technology Inc.
+//  Copyright (c) 2014-present; Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms; with or without
 //  modification; are permitted provided that the following conditions are met:
@@ -19798,7 +19876,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015; Egret Technology Inc.
+//  Copyright (c) 2014-present; Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms; with or without
 //  modification; are permitted provided that the following conditions are met:
@@ -19865,7 +19943,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -20231,7 +20309,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -20485,7 +20563,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -20594,7 +20672,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -21398,7 +21476,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -21923,7 +22001,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -22023,7 +22101,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -22132,7 +22210,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -23336,7 +23414,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -23428,7 +23506,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -23953,7 +24031,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -24083,7 +24161,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -24111,7 +24189,7 @@ var eui;
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -24247,7 +24325,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -24399,7 +24477,7 @@ var eui;
 })(eui || (eui = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
