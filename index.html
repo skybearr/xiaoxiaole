@@ -28,20 +28,18 @@
 	<script egret="lib" src="libs/modules/res/res.js" src-release="libs/modules/res/res.min.js"></script>
 	<script egret="lib" src="libs/modules/tween/tween.js" src-release="libs/modules/tween/tween.min.js"></script>
 	<script egret="lib" src="libs/modules/game/game.js" src-release="libs/modules/game/game.min.js"></script>
-	<script egret="lib" src="libs/modules/game/game.web.js" src-release="libs/modules/game/game.web.min.js"></script>
 	<!--modules_files_end-->
 
     <!--这个标签为不通过egret提供的第三方库的方式使用的 javascript 文件，请将这些文件放在libs下，但不要放在modules下面。-->
-    <!--other_libs_files_start-->
-    <!--other_libs_files_end-->
+    
 
     <!--这个标签会被替换为项目中所有的 javascript 文件。删除 game_files 标签后，项目文件加载列表将不会变化，请谨慎操作！-->
     <!--game_files_start-->
-	<script egret="game" src="bin-debug/AssetAdapter.js"></script>
-	<script egret="game" src="bin-debug/core/command/HttpCommand.js"></script>
-	<script egret="game" src="bin-debug/core/data/GlobalData.js"></script>
-	<script egret="game" src="bin-debug/core/data/StringConst.js"></script>
-	<script egret="game" src="bin-debug/core/data/UIConst.js"></script>
+	<script egret="game" src="bin-debug/core/view/component/BaseButton.js"></script>
+	<script egret="game" src="bin-debug/core/view/component/BaseFirstUI.js"></script>
+	<script egret="game" src="bin-debug/core/view/component/BasePopUI.js"></script>
+	<script egret="game" src="bin-debug/core/view/component/BaseSecondUI.js"></script>
+	<script egret="game" src="bin-debug/core/view/fight/GemView.js"></script>
 	<script egret="game" src="bin-debug/core/event/MyUIEvent.js"></script>
 	<script egret="game" src="bin-debug/core/manager/DataManager.js"></script>
 	<script egret="game" src="bin-debug/core/manager/LoadManager.js"></script>
@@ -55,17 +53,17 @@
 	<script egret="game" src="bin-debug/core/utils/ViewUtil.js"></script>
 	<script egret="game" src="bin-debug/core/view/avg/AVGLogic.js"></script>
 	<script egret="game" src="bin-debug/core/view/avg/AvgMainUI.js"></script>
-	<script egret="game" src="bin-debug/core/view/component/BaseButton.js"></script>
-	<script egret="game" src="bin-debug/core/view/component/BaseFirstUI.js"></script>
-	<script egret="game" src="bin-debug/core/view/component/BasePopUI.js"></script>
-	<script egret="game" src="bin-debug/core/view/component/BaseSecondUI.js"></script>
+	<script egret="game" src="bin-debug/AssetAdapter.js"></script>
+	<script egret="game" src="bin-debug/core/data/GlobalData.js"></script>
+	<script egret="game" src="bin-debug/core/data/StringConst.js"></script>
+	<script egret="game" src="bin-debug/core/data/UIConst.js"></script>
 	<script egret="game" src="bin-debug/core/view/component/MyProgressBar.js"></script>
 	<script egret="game" src="bin-debug/core/view/fight/EnemyView.js"></script>
 	<script egret="game" src="bin-debug/core/view/fight/FightLogic.js"></script>
 	<script egret="game" src="bin-debug/core/view/fight/FightMainUI.js"></script>
 	<script egret="game" src="bin-debug/core/view/fight/FightPauseUI.js"></script>
 	<script egret="game" src="bin-debug/core/view/fight/FightResult.js"></script>
-	<script egret="game" src="bin-debug/core/view/fight/GemView.js"></script>
+	<script egret="game" src="bin-debug/core/command/HttpCommand.js"></script>
 	<script egret="game" src="bin-debug/core/view/fight/SoldierListView.js"></script>
 	<script egret="game" src="bin-debug/core/view/fight/SoldierView.js"></script>
 	<script egret="game" src="bin-debug/core/view/fight/WallView.js"></script>

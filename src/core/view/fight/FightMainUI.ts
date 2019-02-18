@@ -499,154 +499,180 @@ class FightMainUI extends eui.Component {
                             continue;
                         }
                         var first_enemy = this.enemy_arr[first_enemy_position];
-                        if(soldier.y <= first_enemy.y)//战士移动到第一个敌人的位置，发生战斗
+                        if(first_enemy != null)
                         {
-                            //计算伤害
-                            var damage = FightLogic.getInstance().getGemDamage(soldier.vo.derection);
-                            //战士攻击动画效果,特效放完检测是否死亡
-                            soldier.bombEffectPlay(i);
-                            switch(soldier.vo.gem_type) {
-                                case FightLogic.GEM_TYPE_YELLOW:
-                                    soldier.soldierDiappear(i);
-                                    //对第一排及其后面三排位置上造成伤害，大战士对第一排及其后面七排位置上造成伤害
-                                    var l:number = soldier.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG ? 8 : 4;
-                                    for(var k:number=0;k<l;k++){
-                                        var index = first_enemy_position - k * 6;
-                                        if(this.enemy_arr[index] != null)
+                            if (soldier.y <= first_enemy.y)//战士移动到第一个敌人的位置，发生战斗
+                            {
+                                //计算伤害
+                                var damage = FightLogic.getInstance().getGemDamage(soldier.vo.derection);
+                                //战士攻击动画效果,特效放完检测是否死亡
+                                soldier.bombEffectPlay(i);
+                                switch (soldier.vo.gem_type)
+                                {
+                                    case FightLogic.GEM_TYPE_YELLOW:
+                                        soldier.soldierDiappear(i);
+                                        //对第一排及其后面三排位置上造成伤害，大战士对第一排及其后面七排位置上造成伤害
+                                        var l: number = soldier.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG ? 8 : 4;
+                                        for (var k: number = 0; k < l; k++)
                                         {
-                                            this.enemy_arr[index].damage(k==0?damage:damage/2);//后面的位置造成一半伤害
-                                            if(this.enemy_arr[index].vo.hp <= 0) {
-                                                this.removeEnemy(index);
-                                            }
-                                        }
-                                    }
-                                    states[i] = 3;
-                                    break;
-                                case FightLogic.GEM_TYPE_RED:
-                                    soldier.soldierDiappear(i);
-                                    if(soldier.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG) {//如果是大战士，要穿透一共攻击2次
-                                        attack_times[i] = 2;
-                                    }
-                                    //对第一排攻击并对左右两侧相邻位置造成一半伤害，大战士对前两排敌人造成伤害并对左右两侧相邻位置造成一半伤害
-                                    var red_arr:number[] = [];
-                                    red_arr.push(first_enemy_position);
-                                    red_arr.push((FightLogic.getInstance().getNearPostion(first_enemy_position)));
-                                    red_arr.push((FightLogic.getInstance().getNearPostion(first_enemy_position,false)));
-                                    for(var k: number = 0;k < red_arr.length;k++) {
-                                        var index = red_arr[k];
-                                        if(this.enemy_arr[index] != null) {
-                                            this.enemy_arr[index].damage(i == 0 ? damage : damage / 2);//左右的位置造成一半伤害
-                                        }
-                                        if(this.enemy_arr[index] != null && this.enemy_arr[index].vo.hp <= 0) {
-                                            this.removeEnemy(index);
-                                        }
-                                    }
-                                    enemys[i].shift();//攻击一次以后把第一个敌人删除
-                                    attack_times[i] --;
-                                    if(attack_times[i] <= 0)//攻击次数没了
-                                    {
-                                        states[i] = 3;
-                                    }
-                                    break;
-                                case FightLogic.GEM_TYPE_GREEN:
-                                    if(soldier.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG) {//如果是大战士，要穿透一共攻击2次
-                                        attack_times[i] = 2;
-                                    }
-                                    //对第一排攻击并击退6步，大战士对前两排敌人造成伤害并击退6步
-                                    var tartY: number = first_enemy.y -
-                                        FightLogic.getInstance().step_height * FightLogic.GREEN_GEM_REPUSLE;//移动到被击退的位置
-                                    egret.Tween.get(first_enemy).to({ y: tartY },600).call(() => {
-                                        first_enemy.damage(damage);
-                                        if(first_enemy.vo.hp <= 0) {
-                                            this.removeEnemy(first_enemy_position);
-                                        }
-                                        else {
-                                            if(first_enemy_position - 6 * 5 < 0) {//击退到屏幕外面去了
-                                                this.removeEnemy(first_enemy_position);
-                                            }
-                                            else {
-                                                this.enemy_arr[first_enemy_position] = null;
-                                                first_enemy.setPosition(first_enemy_position - 6 * 5);
-                                                this.enemy_arr[first_enemy_position - 6 * 5] = first_enemy;
-                                                this.changeEnemyDisplayIndex(first_enemy_position - 6 * 5);
-                                            }
-                                        }
-                                    },this);
-                                    enemys[i].shift();//攻击一次以后把第一个敌人删除
-                                    attack_times[i]--;
-                                    if(attack_times[i] <= 0)//攻击次数没了
-                                    {
-                                        states[i] = 3;
-                                    }
-                                    break;
-                                case FightLogic.GEM_TYPE_BLUE:
-                                    soldier.soldierDiappear(i);
-                                    if(soldier.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG) {//如果是大战士，要穿透一共攻击2次
-                                        attack_times[i] = 2;
-                                    }
-                                    //对第一排攻击并冰封2回合，大战士对前两排敌人造成冰冻伤害并冰封3回合 < br >
-                                    first_enemy.damage(damage);
-                                    first_enemy.freeze(2);
-                                    if(first_enemy.vo.hp <= 0) {
-                                        this.removeEnemy(first_enemy_position);
-                                    }
-                                    enemys[i].shift();//攻击一次以后把第一个敌人删除
-                                    attack_times[i]--;
-                                    if(attack_times[i] <= 0)//攻击次数没了
-                                    {
-                                        states[i] = 3;
-                                    }
-                                    break;
-                                case FightLogic.GEM_TYPE_PINK:
-                                    if(soldier.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG) {//如果是大战士，要穿透一共攻击2次
-                                        attack_times[i] = 99;
-                                    }
-                                    else{
-                                        attack_times[i] = 2;
-                                    }
-                                    soldier.soldierDiappear(i);
-                                    //对前两排敌人攻击并造成持续伤害2回合，大战士对当前屏幕对应列所有敌人造成伤害并造成持续伤害<br>
-                                    first_enemy.damage(damage);
-                                    first_enemy.dot(2,damage/2);
-                                    if(first_enemy.vo.hp <= 0) {
-                                        this.removeEnemy(first_enemy_position);
-                                    }
-                                    enemys[i].shift();//攻击一次以后把第一个敌人删除
-                                    attack_times[i]--;
-                                    if(attack_times[i] <= 0)//攻击次数没了
-                                    {
-                                        states[i] = 3;
-                                    }
-                                    break;
-                                case FightLogic.GEM_TYPE_BLACK:
-                                    soldier.soldierDiappear(i);
-                                    if(soldier.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG) {//如果是大战士，要穿透一共攻击2次
-                                        attack_times[i] = 2;
-                                    }
-                                    //对当前列及其左右两列的后面五排（共六排）造成毁灭伤害，大战士对第二排敌人造成相同效果
-                                    //（如果第一排攻击时已经把第二排干掉了，则没有了）
-                                    var black_arr:number[] = [];
-                                    black_arr.push(first_enemy_position);
-                                    black_arr.push((FightLogic.getInstance().getNearPostion(first_enemy_position)));
-                                    black_arr.push((FightLogic.getInstance().getNearPostion(first_enemy_position,false)));
-                                    for(var k: number = 0;k < black_arr.length;k++){
-                                        if(black_arr[k] != -1)
-                                        {
-                                            for(var j:number=0;j<6;j++){
-                                                if(this.enemy_arr[black_arr[k]-j] != null){
-                                                    this.removeEnemy(black_arr[k] - j);
+                                            var index = first_enemy_position - k * 6;
+                                            if (this.enemy_arr[index] != null)
+                                            {
+                                                this.enemy_arr[index].damage(k == 0 ? damage : damage / 2);//后面的位置造成一半伤害
+                                                if (this.enemy_arr[index].vo.hp <= 0)
+                                                {
+                                                    this.removeEnemy(index);
                                                 }
                                             }
                                         }
-                                    }
-                                    enemys[i].shift();//攻击一次以后把第一个敌人删除
-                                    attack_times[i]--;
-                                    if(attack_times[i] <= 0)//攻击次数没了
-                                    {
                                         states[i] = 3;
-                                    }
-                                    break;
-                            }
+                                        break;
+                                    case FightLogic.GEM_TYPE_RED:
+                                        soldier.soldierDiappear(i);
+                                        if (soldier.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG)
+                                        {//如果是大战士，要穿透一共攻击2次
+                                            attack_times[i] = 2;
+                                        }
+                                        //对第一排攻击并对左右两侧相邻位置造成一半伤害，大战士对前两排敌人造成伤害并对左右两侧相邻位置造成一半伤害
+                                        var red_arr: number[] = [];
+                                        red_arr.push(first_enemy_position);
+                                        red_arr.push((FightLogic.getInstance().getNearPostion(first_enemy_position)));
+                                        red_arr.push((FightLogic.getInstance().getNearPostion(first_enemy_position, false)));
+                                        for (var k: number = 0; k < red_arr.length; k++)
+                                        {
+                                            var index = red_arr[k];
+                                            if (this.enemy_arr[index] != null)
+                                            {
+                                                this.enemy_arr[index].damage(i == 0 ? damage : damage / 2);//左右的位置造成一半伤害
+                                            }
+                                            if (this.enemy_arr[index] != null && this.enemy_arr[index].vo.hp <= 0)
+                                            {
+                                                this.removeEnemy(index);
+                                            }
+                                        }
+                                        enemys[i].shift();//攻击一次以后把第一个敌人删除
+                                        attack_times[i]--;
+                                        if (attack_times[i] <= 0)//攻击次数没了
+                                        {
+                                            states[i] = 3;
+                                        }
+                                        break;
+                                    case FightLogic.GEM_TYPE_GREEN:
+                                        if (soldier.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG)
+                                        {//如果是大战士，要穿透一共攻击2次
+                                            attack_times[i] = 2;
+                                        }
+                                        //对第一排攻击并击退6步，大战士对前两排敌人造成伤害并击退6步
+                                        var tartY: number = first_enemy.y -
+                                            FightLogic.getInstance().step_height * FightLogic.GREEN_GEM_REPUSLE;//移动到被击退的位置
+                                        egret.Tween.get(first_enemy).to({ y: tartY }, 600).call(() =>
+                                        {
+                                            first_enemy.damage(damage);
+                                            if (first_enemy.vo.hp <= 0)
+                                            {
+                                                this.removeEnemy(first_enemy_position);
+                                            }
+                                            else
+                                            {
+                                                if (first_enemy_position - 6 * 5 < 0)
+                                                {//击退到屏幕外面去了
+                                                    this.removeEnemy(first_enemy_position);
+                                                }
+                                                else
+                                                {
+                                                    this.enemy_arr[first_enemy_position] = null;
+                                                    first_enemy.setPosition(first_enemy_position - 6 * 5);
+                                                    this.enemy_arr[first_enemy_position - 6 * 5] = first_enemy;
+                                                    this.changeEnemyDisplayIndex(first_enemy_position - 6 * 5);
+                                                }
+                                            }
+                                        }, this);
+                                        enemys[i].shift();//攻击一次以后把第一个敌人删除
+                                        attack_times[i]--;
+                                        if (attack_times[i] <= 0)//攻击次数没了
+                                        {
+                                            states[i] = 3;
+                                        }
+                                        break;
+                                    case FightLogic.GEM_TYPE_BLUE:
+                                        soldier.soldierDiappear(i);
+                                        if (soldier.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG)
+                                        {//如果是大战士，要穿透一共攻击2次
+                                            attack_times[i] = 2;
+                                        }
+                                        //对第一排攻击并冰封2回合，大战士对前两排敌人造成冰冻伤害并冰封3回合 < br >
+                                        first_enemy.damage(damage);
+                                        first_enemy.freeze(2);
+                                        if (first_enemy.vo.hp <= 0)
+                                        {
+                                            this.removeEnemy(first_enemy_position);
+                                        }
+                                        enemys[i].shift();//攻击一次以后把第一个敌人删除
+                                        attack_times[i]--;
+                                        if (attack_times[i] <= 0)//攻击次数没了
+                                        {
+                                            states[i] = 3;
+                                        }
+                                        break;
+                                    case FightLogic.GEM_TYPE_PINK:
+                                        if (soldier.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG)
+                                        {//如果是大战士，要穿透一共攻击2次
+                                            attack_times[i] = 99;
+                                        }
+                                        else
+                                        {
+                                            attack_times[i] = 2;
+                                        }
+                                        soldier.soldierDiappear(i);
+                                        //对前两排敌人攻击并造成持续伤害2回合，大战士对当前屏幕对应列所有敌人造成伤害并造成持续伤害<br>
+                                        first_enemy.damage(damage);
+                                        first_enemy.dot(2, damage / 2);
+                                        if (first_enemy.vo.hp <= 0)
+                                        {
+                                            this.removeEnemy(first_enemy_position);
+                                        }
+                                        enemys[i].shift();//攻击一次以后把第一个敌人删除
+                                        attack_times[i]--;
+                                        if (attack_times[i] <= 0)//攻击次数没了
+                                        {
+                                            states[i] = 3;
+                                        }
+                                        break;
+                                    case FightLogic.GEM_TYPE_BLACK:
+                                        soldier.soldierDiappear(i);
+                                        if (soldier.vo.derection == FightLogic.SOLDIER_LIST_TYPE_BIG)
+                                        {//如果是大战士，要穿透一共攻击2次
+                                            attack_times[i] = 2;
+                                        }
+                                        //对当前列及其左右两列的后面五排（共六排）造成毁灭伤害，大战士对第二排敌人造成相同效果
+                                        //（如果第一排攻击时已经把第二排干掉了，则没有了）
+                                        var black_arr: number[] = [];
+                                        black_arr.push(first_enemy_position);
+                                        black_arr.push((FightLogic.getInstance().getNearPostion(first_enemy_position)));
+                                        black_arr.push((FightLogic.getInstance().getNearPostion(first_enemy_position, false)));
+                                        for (var k: number = 0; k < black_arr.length; k++)
+                                        {
+                                            if (black_arr[k] != -1)
+                                            {
+                                                for (var j: number = 0; j < 6; j++)
+                                                {
+                                                    if (this.enemy_arr[black_arr[k] - j] != null)
+                                                    {
+                                                        this.removeEnemy(black_arr[k] - j);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        enemys[i].shift();//攻击一次以后把第一个敌人删除
+                                        attack_times[i]--;
+                                        if (attack_times[i] <= 0)//攻击次数没了
+                                        {
+                                            states[i] = 3;
+                                        }
+                                        break;
+                                }
+                        }
+                        
                         }
                     }
                     else if(state == 3) {//已经打完不用管了
